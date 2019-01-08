@@ -53,4 +53,17 @@
 
 * {
   font-family: 'Vazir', 'Clear Sans', sans-serif !important;
+  direction: rtl !important;
+}
+
+.EndpointSetup__streaming__checkbox {
+  margin-left: 0.75em;
+  margin-right: initial;
+}
+
+@media (min-width: 640px){
+  .EndpointPicker__section {
+    margin-left: 2em;
+    margin-right: initial;
+  }
 }

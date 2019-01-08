@@ -12,22 +12,26 @@ let defaultNetwork = {
 let current = (state=defaultNetwork, action) => {
   switch(action.type) {
     case LOAD_STATE:
-      if (action.queryObj.network == "custom") {
-        return {
-          name: action.queryObj.network,
-          horizonURL: action.queryObj.horizonURL,
-          networkPassphrase: action.queryObj.networkPassphrase
-        }
-      }
-
-      if (action.queryObj.network && NETWORK.available[action.queryObj.network]) {
-        return Object.assign({name: action.queryObj.network}, NETWORK.available[action.queryObj.network]);
-      }
-      return state;
+      // commented to only use test network
+      // if (action.queryObj.network == "custom") {
+      //   return {
+      //     name: action.queryObj.network,
+      //     horizonURL: action.queryObj.horizonURL,
+      //     networkPassphrase: action.queryObj.networkPassphrase
+      //   }
+      // }
+      //
+      // if (action.queryObj.network && NETWORK.available[action.queryObj.network]) {
+      //   return Object.assign({name: action.queryObj.network}, NETWORK.available[action.queryObj.network]);
+      // }
+      // return state;
+      return defaultNetwork;
     case SET_PARAMS:
-      return action.params;
+      // return action.params;
+      return defaultNetwork;
     default:
-      return state;
+      // return state;
+      return defaultNetwork;
   }
 }
 

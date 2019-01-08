@@ -32,19 +32,19 @@ function LaboratoryChrome(props) {
             <span className="so-logo__separator"> </span>
             <a href="#" className="so-logo__subSite">laboratory</a>
           </span>
-          <NetworkPicker />
+          {/*<NetworkPicker />*/}
         </div>
       </div>
     </div>
     <div className="so-back LaboratoryChrome__siteNavBack">
       <div className="so-chunk">
         <nav className="s-buttonList">
-          {tabItem('Introduction', SLUG.HOME)}
-          {tabItem('Account Creator', SLUG.ACCOUNT_CREATOR)}
-          {tabItem('Endpoint Explorer', SLUG.EXPLORER)}
-          {tabItem('Transaction Builder', SLUG.TXBUILDER)}
-          {tabItem('Transaction Signer', SLUG.TXSIGNER)}
-          {tabItem('XDR Viewer', SLUG.XDRVIEWER)}
+          {tabItem('معرفی', SLUG.HOME)}
+          {tabItem('ساختن کیف پول', SLUG.ACCOUNT_CREATOR)}
+          {tabItem('جستجوگر', SLUG.EXPLORER)}
+          {tabItem('ساختن تراکنش', SLUG.TXBUILDER)}
+          {tabItem('امضا تراکنش', SLUG.TXSIGNER)}
+          {/*{tabItem('XDR Viewer', SLUG.XDRVIEWER)}*/}
         </nav>
       </div>
     </div>

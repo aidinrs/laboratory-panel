@@ -24,12 +24,12 @@ class AccountCreator extends React.Component {
         </div>
       </div>
     }
-    // if (state.keypairGeneratorPubKey !== '') {
-    //   keypairGeneratorLink = <a onClick={() => dispatch(updateFriendbotTarget(state.keypairGeneratorPubKey))}>Fund this account on the test network using the friendbot tool below</a>
-    // }
-    // if (state.friendbotStatus.code) {
-    //   friendbotResultCodeblock = <CodeBlock className="AccountCreator__spaceTop" code={state.friendbotStatus.code} language="json" />
-    // }
+    if (state.keypairGeneratorPubKey !== '') {
+      keypairGeneratorLink = <a onClick={() => dispatch(updateFriendbotTarget(state.keypairGeneratorPubKey))}>Fund this account on the test network using the friendbot tool below</a>
+    }
+    if (state.friendbotStatus.code) {
+      friendbotResultCodeblock = <CodeBlock className="AccountCreator__spaceTop" code={state.friendbotStatus.code} language="json" />
+    }
 
 
     let friendbotMessage;
@@ -56,32 +56,31 @@ class AccountCreator extends React.Component {
 
           <p>These keypairs can be used on the Stellar network where one is required. For example, it can be used as an account master key, account signer, and/or as a stellar-core node key.</p>
 
-          <button className="s-button" onClick={() => {dispatch(generateNewKeypair())}}>تولید آدرس</button>
+          {/*<button className="s-button" onClick={() => {dispatch(generateNewKeypair())}}>تولید آدرس</button>*/}
           {keypairTable}
-          {/*{keypairGeneratorLink}*/}
+          {keypairGeneratorLink}
         </div>
       </div>
-      {/*<div className="so-back AccountCreator__separator">*/}
-      {/*</div>*/}
-      {/*<div className="so-back AccountCreator__section">*/}
-        {/*<div className="so-chunk">*/}
-          {/*<h3>2. Friendbot: Fund a test network account</h3>*/}
-          {/*<p>The friendbot is a horizon API endpoint that will fund an account with 10,000 lumens on the test network.</p>*/}
-
-          {/*<PubKeyPicker*/}
-            {/*className="picker--spaceBottom"*/}
-            {/*value={state.friendbotTarget}*/}
-            {/*onUpdate={(accountId) => {*/}
-              {/*dispatch(updateFriendbotTarget(accountId))*/}
-            {/*}} />*/}
-          {/*<button className="s-button"*/}
-            {/*disabled={state.friendbotTarget.length === 0}*/}
-            {/*onClick={() => dispatch(startFriendbotRequest(state.friendbotTarget))}*/}
-            {/*>Get test network lumens</button>*/}
-          {/*{friendbotMessage}*/}
-          {/*{friendbotResultCodeblock}*/}
-        {/*</div>*/}
-      {/*</div>*/}
+      <div className="so-back AccountCreator__separator">
+      </div>
+      <div className="so-back AccountCreator__section">
+        <div className="so-chunk">
+          <h3>2. Friendbot: Fund a test network account</h3>
+          <p>The friendbot is a horizon API endpoint that will fund an account with 10,000 lumens on the test network.</p>
+          <PubKeyPicker
+            className="picker--spaceBottom"
+            value={state.friendbotTarget}
+            onUpdate={(accountId) => {
+              dispatch(updateFriendbotTarget(accountId))
+            }}/>
+          <button className="s-button"
+            disabled={state.friendbotTarget.length === 0}
+            onClick={() => dispatch(startFriendbotRequest(state.friendbotTarget))}
+            >Get test network lumens</button>
+          {friendbotMessage}
+          {friendbotResultCodeblock}
+        </div>
+      </div>
     </div>
   }
 }

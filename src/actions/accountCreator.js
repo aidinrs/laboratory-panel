@@ -1,6 +1,7 @@
 import axios from 'axios';
 import dispatchInNewStack from '../utilities/dispatchInNewStack';
 import {Keypair} from 'stellar-sdk';
+import NETWORK from '../constants/network';
 
 export const GENERATE_NEW_KEYPAIR = 'GENERATE_NEW_KEYPAIR';
 export function generateNewKeypair() {

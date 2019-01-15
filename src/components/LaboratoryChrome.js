@@ -32,7 +32,7 @@ function LaboratoryChrome(props) {
             <span className="so-logo__separator"> </span>
             <a href="#" className="so-logo__subSite">laboratory</a>
           </span>
-          {/*<NetworkPicker />*/}
+          <NetworkPicker />
         </div>
       </div>
     </div>

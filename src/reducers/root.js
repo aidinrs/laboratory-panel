@@ -6,15 +6,19 @@ import transactionSigner from './transactionSigner';
 import xdrViewer from './xdrViewer';
 import network from './network';
 import routing from './routing';
+import introduction from './introduction';
+import user from './user';
 
 const rootReducer = combineReducers({
-  accountCreator,
+  accountCreator: accountCreator,
   endpointExplorer,
   transactionBuilder,
   transactionSigner,
   xdrViewer,
   network,
   routing,
+  introduction,
+  user
 });
 
 export default rootReducer;

@@ -5,20 +5,21 @@ import OptionsTablePair from './OptionsTable/Pair'
 import axios from 'axios'
 import NETWORK from '../constants/network'
 import { generateNewKeypair } from '../actions/accountCreator'
+import { loginRequest, registerRequest, showLogin, showRegister } from '../actions/introduction'
 
 class Introduction extends React.Component {
 
   constructor (props) {
     super(props)
-    this.state = {
-      mode: 'login',
-      showError: false,
-      errorMsg: null,
-      showMsg: false,
-      msg: null,
-      showRegister: true,
-      showLogin: true
-    }
+    // this.state = {
+    //   mode: 'login',
+    //   showError: false,
+    //   errorMsg: null,
+    //   showMsg: false,
+    //   msg: null,
+    //   showRegister: true,
+    //   showLogin: true
+    // }
     this.user = {
       firstName: null,
       lastName: null,
@@ -36,56 +37,64 @@ class Introduction extends React.Component {
   register () {
     let {state, dispatch} = this.props
 
-    let keyPair = generateNewKeypair()
-    dispatch(keyPair)
+    dispatch(registerRequest(this.user))
 
-    this.user.accountId = keyPair.pubKey
-    console.log(this.user)
+    // let {state, dispatch} = this.props
 
-    axios.post(`${NETWORK.api.base}/users`, this.user).then(r => {
-      console.log(r)
-      this.setState({showMsg: true, showError: false, msg: 'ثبت شد.', mode: 'login', showRegister: false})
-    }).catch(e => {
-      this.setState({showError: true, errorMsg: 'Error'})
-    })
+    // let keyPair = generateNewKeypair()
+    // dispatch(keyPair)
+    //
+    // this.user.accountId = keyPair.pubKey
+    // console.log(this.user)
+    //
+    // axios.post(`${NETWORK.api.base}/users`, this.user).then(r => {
+    //   console.log(r)
+    //   this.setState({showMsg: true, showError: false, msg: 'ثبت شد.', mode: 'login', showRegister: false})
+    // }).catch(e => {
+    //   this.setState({showError: true, errorMsg: 'Error'})
+    // })
   }
 
   login () {
     let {state, dispatch} = this.props
 
-    // let keyPair = generateNewKeypair()
-    // dispatch(keyPair)
-
-    // this.user.accountId = keyPair.pubKey
     console.log(this.auth)
 
-    const params = new URLSearchParams()
-    params.append('username', this.auth.mobile)
-    params.append('password', this.auth.password)
-    params.append('grant_type', 'password')
+    dispatch(loginRequest(this.auth))
 
-    const options = {
-      method: 'POST',
-      headers: {'Authorization': `Basic aW9zOnZNeUs2dGVnWTU=`},
-      data: params,
-      url: `${NETWORK.api.base}/auth`
-    }
-    axios(options).then(r => {
-      console.log(r)
-      this.setState({
-        showMsg: true,
-        showError: false,
-        msg: 'وارد شدید.',
-        mode: null,
-        showRegister: false,
-        showLogin: false
-      })
-    }).catch(e => {
-      this.setState({showError: true, errorMsg: 'Error'})
-    })
+    // let keyPair = generateNewKeypair()
+
+    // this.user.accountId = keyPair.pubKey
+
+    // const params = new URLSearchParams()
+    // params.append('username', this.auth.mobile)
+    // params.append('password', this.auth.password)
+    // params.append('grant_type', 'password')
+    //
+    // const options = {
+    //   method: 'POST',
+    //   headers: {'Authorization': `Basic aW9zOnZNeUs2dGVnWTU=`},
+    //   data: params,
+    //   url: `${NETWORK.api.base}/auth`
+    // }
+    // axios(options).then(r => {
+    //   console.log(r)
+    //   this.setState({
+    //     showMsg: true,
+    //     showError: false,
+    //     msg: 'وارد شدید.',
+    //     mode: null,
+    //     showRegister: false,
+    //     showLogin: false
+    //   })
+    // }).catch(e => {
+    //   this.setState({showError: true, errorMsg: 'Error'})
+    // })
   }
 
   render () {
+    const {state, dispatch} = this.props
+
     return <div className="Introduction">
       <div className="so-back">
         <div className="so-chunk">
@@ -100,17 +109,17 @@ class Introduction extends React.Component {
             <p>For Stellar docs, take a look at the <a href="https://www.stellar.org/developers/">Stellar developers
               site</a>.</p>
             <div style={{width: 200, margin: 'auto'}}>
-              {this.state.showRegister &&
-              <button className="s-button" onClick={() => {this.setState({mode: 'register'})}}>ثبت نام</button>}
+              {state.showRegister &&
+              <button className="s-button" onClick={() => {dispatch(showRegister())}}>ثبت نام</button>}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {this.state.showLogin &&
-              <button className="s-button" onClick={() => {this.setState({mode: 'login'})}}>ورود</button>}
+              {state.showLogin &&
+              <button className="s-button" onClick={() => {dispatch(showLogin())}}>ورود</button>}
             </div>
           </div>
           <div>
-            {this.state.showError && <p>{this.state.errorMsg}</p>}
-            {this.state.showMsg && <p>{this.state.msg}</p>}
-            {this.state.mode === 'register' &&
+            {state.showError && <p>{state.errorMsg}</p>}
+            {state.showMsg && <p>{state.msg}</p>}
+            {state.mode === 'register' &&
             <div>
               <OptionsTablePair label="نام" key="firstName">
                 <TextPicker onUpdate={(v) => {this.user.firstName = v}} placeholder='نام'/>
@@ -130,7 +139,7 @@ class Introduction extends React.Component {
               <br/>
               <button className="s-button" onClick={() => {this.register()}}>ارسال</button>
             </div>}
-            {this.state.mode === 'login' &&
+            {state.mode === 'login' &&
             <div>
               <OptionsTablePair label="موبایل" key="mobile">
                 <TextPicker onUpdate={(v) => {this.auth.mobile = v}} placeholder='موبایل'/>
@@ -150,10 +159,10 @@ class Introduction extends React.Component {
 
 export default connect(chooseState)(Introduction)
 
-function chooseState (state) {
+function chooseState (reduxState) {
   return {
-    state: state,
+    state: reduxState.introduction,
+    user: reduxState.user
   }
 }
-
 

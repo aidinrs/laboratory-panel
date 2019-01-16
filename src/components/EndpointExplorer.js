@@ -20,6 +20,8 @@ class EndpointExplorer extends React.Component {
       pendingRequest,
     } = this.props.state;
 
+    pendingRequest.values.account_id = this.props.user.accountId
+
     let endpoint = getEndpoint(currentResource, currentEndpoint);
     let request = buildRequest(this.props.baseURL, endpoint, pendingRequest);
 
@@ -69,6 +71,7 @@ function chooseState(state) {
   return {
     state: state.endpointExplorer,
     baseURL: state.network.current.horizonURL,
+    user: state.user
   };
 }
 

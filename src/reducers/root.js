@@ -7,6 +7,7 @@ import xdrViewer from './xdrViewer';
 import network from './network';
 import routing from './routing';
 import introduction from './introduction';
+import payment from './payment';
 import user from './user';
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   network,
   routing,
   introduction,
+  payment,
   user
 });
 

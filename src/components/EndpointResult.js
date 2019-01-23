@@ -10,12 +10,12 @@ export class EndpointResult extends React.Component {
       return null;
     }
 
-    if (body.length === 0) {
-      return <LoadingPane />;
-    }
-
     if (isError) {
       return ErrorPane(body);
+    }
+
+    if (body.length === 0) {
+      return <LoadingPane />;
     }
 
     return ResultPane(body);

@@ -1,31 +1,32 @@
-import React from 'react';
-import _ from 'lodash';
-import {chooseEndpoint, submitRequest, updateValue} from "../actions/endpointExplorer"
-import {connect} from 'react-redux';
-import {EndpointPicker} from './EndpointPicker';
-import {EndpointSetup} from './EndpointSetup';
-import {EndpointResult} from './EndpointResult';
-import {getEndpoint} from '../data/endpoints';
-import NETWORK from '../constants/network';
-import UriTemplates from 'uri-templates';
-import querystring from 'querystring';
+import React from 'react'
+import _ from 'lodash'
+import { chooseEndpoint, submitRequest, updateValue } from '../actions/endpointExplorer'
+import { connect } from 'react-redux'
+import { EndpointPicker } from './EndpointPicker'
+import { EndpointSetup } from './EndpointSetup'
+import { EndpointResult } from './EndpointResult'
+import { ResultTable } from './SetupPanes/ResultTable'
+import { getEndpoint } from '../data/endpoints'
+import NETWORK from '../constants/network'
+import UriTemplates from 'uri-templates'
+import querystring from 'querystring'
 
 class EndpointExplorer extends React.Component {
-  render() {
-    let {dispatch} = this.props;
+  render () {
+    let {dispatch} = this.props
     let {
       currentResource,
       currentEndpoint,
       results,
       pendingRequest,
-    } = this.props.state;
+    } = this.props.state
 
     pendingRequest.values.account_id = this.props.user.accountId
 
-    let endpoint = getEndpoint(currentResource, currentEndpoint);
-    let request = buildRequest(this.props.baseURL, endpoint, pendingRequest);
+    let endpoint = getEndpoint(currentResource, currentEndpoint)
+    let request = buildRequest(this.props.baseURL, endpoint, pendingRequest)
 
-    let endpointSetup;
+    let endpointSetup
     if (currentEndpoint !== '') {
       endpointSetup = <EndpointSetup
         request={request}
@@ -40,7 +41,8 @@ class EndpointExplorer extends React.Component {
       <div className="so-chunk">
         <div className="pageIntro">
           <p>
-            This tool can be used to run queries against the <a href="https://www.stellar.org/developers/reference/" target="_blank">REST API endpoints</a> on the
+            This tool can be used to run queries against the <a href="https://www.stellar.org/developers/reference/"
+                                                                target="_blank">REST API endpoints</a> on the
             Horizon server. Horizon is the client facing library for the Stellar ecosystem.</p>
         </div>
         <div className="EndpointExplorer">
@@ -48,16 +50,18 @@ class EndpointExplorer extends React.Component {
             <EndpointPicker
               currentResource={currentResource}
               currentEndpoint={currentEndpoint}
-              onChange={(r,e)=> dispatch(chooseEndpoint(r,e))}
-              />
+              onChange={(r, e) => dispatch(chooseEndpoint(r, e))}
+            />
           </div>
 
           <div className="EndpointExplorer__setup">
             {endpointSetup}
           </div>
-
+          <div className="EndpointExplorer__setup">
+            <ResultTable body={results.body && results.body[0] ? JSON.parse(results.body[0]) :{}} keys={(endpoint && endpoint.fields) ? endpoint.fields : []}/>
+          </div>
           <div className="EndpointExplorer__result">
-            <EndpointResult {...results} />
+            {/*<EndpointResult {...results} />*/}
           </div>
         </div>
       </div>
@@ -67,50 +71,50 @@ class EndpointExplorer extends React.Component {
 
 export default connect(chooseState)(EndpointExplorer)
 
-function chooseState(state) {
+function chooseState (state) {
   return {
     state: state.endpointExplorer,
     baseURL: state.network.current.horizonURL,
     user: state.user
-  };
+  }
 }
 
-function buildRequest(baseUrl, endpoint, pendingRequest) {
+function buildRequest (baseUrl, endpoint, pendingRequest) {
   let request = {
     url: buildRequestUrl(baseUrl, endpoint, pendingRequest.values),
     formData: '',
-  };
+  }
 
   if (typeof endpoint !== 'undefined') {
-    request.method = endpoint.method;
+    request.method = endpoint.method
   }
 
   // Currently, this only supports simple string values
   if (request.method === 'POST') {
-    let postData = {};
+    let postData = {}
     _.each(pendingRequest.values, (value, id) => {
-      postData[id] = _.trim(value);
-    });
+      postData[id] = _.trim(value)
+    })
 
-    request.formData = querystring.stringify(postData);
+    request.formData = querystring.stringify(postData)
   }
 
   if (pendingRequest.values.streaming) {
-    request.streaming = true;
+    request.streaming = true
   }
 
-  return request;
+  return request
 }
 
 function buildRequestUrl (baseUrl, endpoint, values) {
   if (typeof endpoint === 'undefined') {
-    return '';
+    return ''
   }
-  let uriTemplate = baseUrl + endpoint.path.template;
-  let template = new UriTemplates(uriTemplate);
+  let uriTemplate = baseUrl + endpoint.path.template
+  let template = new UriTemplates(uriTemplate)
 
   // uriParams contains what we want to fill the url with
-  let uriParams = {};
+  let uriParams = {}
   _.each(template.varNames, (varName) => {
 
     // With the appropriate getter, extract/transform the relevant value from values
@@ -123,43 +127,43 @@ function buildRequestUrl (baseUrl, endpoint, values) {
     //
     // getter can only either be: `undefined`, `String`, or `Function`
 
-    let getterPresent = varName in endpoint.path;
-    let getter = endpoint.path[varName];
-    let getterIsFunc = _.isFunction(getter);
-    let value;
+    let getterPresent = varName in endpoint.path
+    let getter = endpoint.path[varName]
+    let getterIsFunc = _.isFunction(getter)
+    let value
 
     if (getterPresent && getterIsFunc) { // case 3
-      value = getter(values);
+      value = getter(values)
     } else if (getterPresent && !getterIsFunc) { // case 2
-      value = _.get(values, getter);
+      value = _.get(values, getter)
     } else { // case 1
-      value = values[varName];
+      value = values[varName]
     }
 
     if (!_.isUndefined(value) && value !== '') {
       if (!_.isString(value)) {
-        throw new Error('Endpoint explorer value must be a string');
+        throw new Error('Endpoint explorer value must be a string')
       }
-      uriParams[varName] = _.trim(value);
+      uriParams[varName] = _.trim(value)
     }
-  });
+  })
 
   // Fill in unfilled parameters with placeholders (like {source_account})
   // Also create a map to unescape these placeholders
-  let unescapeMap = [];
+  let unescapeMap = []
   _.each(template.fromUri(uriTemplate), (placeholder, param) => {
     if (!(param in uriParams)) {
-      uriParams[param] = placeholder;
+      uriParams[param] = placeholder
       unescapeMap.push({
         oldStr: encodeURIComponent(placeholder),
         newStr: placeholder
-      });
+      })
     }
-  });
+  })
 
   let builtUrl = _.reduce(unescapeMap, (url, replacement) => {
-    return url.replace(replacement.oldStr, replacement.newStr);
-  }, template.fill(uriParams));
+    return url.replace(replacement.oldStr, replacement.newStr)
+  }, template.fill(uriParams))
 
-  return builtUrl;
-};
+  return builtUrl
+}

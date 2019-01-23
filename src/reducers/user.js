@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {
-  SET_USER
+  SET_USER, LOG_OUT
 } from '../actions/user';
 import _ from 'lodash';
 
@@ -29,11 +29,14 @@ import _ from 'lodash';
 // }
 
 const defaultRequestState = {
-  accountId: ''
+  accountId: '',
 }
 function reducer(state = defaultRequestState, action) {
   if (action.type === SET_USER) {
-    return _.assign({}, action.user);
+    return _.assign({}, defaultRequestState, action.user);
+  }
+  if (action.type === LOG_OUT) {
+    return _.assign({}, null);
   }
 
   return state;

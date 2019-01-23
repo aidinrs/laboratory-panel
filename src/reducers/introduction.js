@@ -40,49 +40,57 @@ const defaultRequestState = {
   showMsg: false,
   msg: null,
   showRegister: true,
-  showLogin: true
+  showLogin: true,
+  showKeypair: false,
+  keypairFields: [],
+  keypair: null,
 }
 function reducer(state = defaultRequestState, action) {
   if (action.type === SHOW_LOGIN) {
     return _.assign({}, state, {
-      mode: 'login'
+      mode: 'login',
+      showKeypair: false
     });
   }
   if (action.type === SHOW_REGISTER) {
     return _.assign({}, state, {
-      mode: 'register'
+      mode: 'register',
     });
   }
   if (action.type === LOGIN_ERR) {
     return _.assign({}, state, {
-      showError: action.showError,
-      errorMsg: action.errorMsg
+      showError: true,
+      errorMsg: action.errorMsg,
+      showMsg: false,
     });
   }
   if (action.type === LOGIN_SUCCESS) {
     return _.assign({}, state, {
-      showMsg: action.showMsg,
-      showError: action.showError,
+      showMsg: true,
+      showError: false,
       msg: action.msg,
-      mode: action.mode,
-      showRegister: action.showRegister,
-      showLogin: action.showLogin
+      mode: null,
+      showRegister: false,
+      showLogin: false
     });
   }
   if (action.type === REGISTER_ERR) {
     return _.assign({}, state, {
-      showError: action.showError,
+      showError: true,
       errorMsg: action.errorMsg
     });
   }
   if (action.type === REGISTER_SUCCESS) {
     return _.assign({}, state, {
-      showMsg: action.showMsg,
-      showError: action.showError,
+      keypairFields: action.keypairFields,
+      keypair: action.keypair,
+      showKeypair: true,
       msg: action.msg,
-      mode: action.mode,
-      showRegister: action.showRegister,
-      showLogin: action.showLogin
+      showMsg: true,
+      showError: false,
+      mode: 'login',
+      showRegister: false,
+      showLogin: true,
     });
   }
   return state;

@@ -23,6 +23,7 @@ export const endpointsMap = {
         'path': {
           template: '/accounts/{account_id}',
         },
+        'fields': [{name: 'balances', fields: ['balance']}, 'sequence'],
         'setupComponent': require('../components/SetupPanes/SingleAccount'),
       }
     }

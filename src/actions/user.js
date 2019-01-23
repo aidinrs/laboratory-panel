@@ -13,3 +13,10 @@ export function setUser(user) {
   }
 }
 
+export const LOG_OUT = 'LOG_OUT';
+export function logoutUser(user) {
+  return {
+    type: LOG_OUT
+  }
+}
+

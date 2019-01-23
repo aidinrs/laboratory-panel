@@ -34,7 +34,8 @@ let store = createStoreWithMiddleware(rootReducer, persistedState);
 
 store.subscribe(throttle(() => {
   saveState({
-    network: store.getState().network
+    network: store.getState().network,
+    user: store.getState().user
   });
 }, 1000));
 

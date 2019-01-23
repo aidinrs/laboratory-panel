@@ -7,11 +7,15 @@ import AccountCreator from './AccountCreator';
 import EndpointExplorer from './EndpointExplorer';
 import TransactionBuilder from './TransactionBuilder';
 import TransactionSigner from './TransactionSigner';
+import Payment from './Payment';
 import XdrViewer from './XdrViewer';
 import {RouterListener} from '../utilities/simpleRouter';
 import SLUG from '../constants/slug';
 
 function LaboratoryChrome(props) {
+  const {user} = props
+  const isLoggedIn = user && user.access_token && user.accountId
+
   let tabItem = (name, slug) => {
     return <a
       href={'#' + slug}
@@ -40,10 +44,11 @@ function LaboratoryChrome(props) {
       <div className="so-chunk">
         <nav className="s-buttonList">
           {tabItem('معرفی', SLUG.HOME)}
-          {tabItem('ساختن کیف پول', SLUG.ACCOUNT_CREATOR)}
-          {tabItem('جستجوگر', SLUG.EXPLORER)}
-          {tabItem('ساختن تراکنش', SLUG.TXBUILDER)}
-          {tabItem('امضا تراکنش', SLUG.TXSIGNER)}
+          {/*{!isLoggedIn && tabItem('ساختن کیف پول', SLUG.ACCOUNT_CREATOR)}*/}
+          {isLoggedIn && tabItem('جستجوگر', SLUG.EXPLORER)}
+          {isLoggedIn && tabItem('پرداخت', SLUG.PAYMENT)}
+          {isLoggedIn && tabItem('ساختن تراکنش', SLUG.TXBUILDER)}
+          {isLoggedIn && tabItem('امضا تراکنش', SLUG.TXSIGNER)}
           {/*{tabItem('XDR Viewer', SLUG.XDRVIEWER)}*/}
         </nav>
       </div>
@@ -66,6 +71,8 @@ function getContent(slug) {
       return <TransactionBuilder />;
     case SLUG.TXSIGNER:
       return <TransactionSigner />;
+    case SLUG.PAYMENT:
+      return <Payment />;
     case 'xdr-viewer':
       return <XdrViewer />;
     default:
@@ -84,6 +91,7 @@ function SimplePage(props) {
 export default connect(chooseState)(LaboratoryChrome);
 function chooseState(state) {
   return {
-    routing: state.routing
+    routing: state.routing,
+    user: state.user
   }
 }

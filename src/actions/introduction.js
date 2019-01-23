@@ -20,8 +20,8 @@ export function showRegister() {
   return {
     type: SHOW_REGISTER
   }
-
 }
+
 export const SHOW_LOGIN = 'SHOW_LOGIN';
 export function showLogin() {
   return {
@@ -32,7 +32,7 @@ export function showLogin() {
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_ERR = 'REGISTER_ERR'
 export function registerRequest (user) {
-  return dispatch => {
+  return (dispatch) => {
     // dispatch({
     //   type: START_FRIENDBOT_REQUEST,
     //   message: 'Loading...',
@@ -43,24 +43,20 @@ export function registerRequest (user) {
     dispatch(keyPair)
 
     user.accountId = keyPair.pubKey
-    console.log(user)
+    // console.log(user)
 
     axios.post(`${NETWORK.api.base}/users`, user).then(r => {
-      console.log(r)
+      // console.log(r)
+
       dispatchInNewStack(dispatch, {
         type: REGISTER_SUCCESS,
-        showMsg: true,
-        showError: false,
         msg: 'ثبت شد.',
-        mode: 'login',
-        showRegister: false,
-        showLogin: true
+        keypairFields: ['pubKey', 'secretKey'],
+        keypair: keyPair,
       })
-      this.setState({})
     }).catch(e => {
       dispatchInNewStack(dispatch, {
         type: REGISTER_ERR,
-        showError: true,
         errorMsg: 'Error'
       })
     })
@@ -92,19 +88,13 @@ export function loginRequest (auth) {
       console.log(response)
       dispatchInNewStack(dispatch, {
         type: LOGIN_SUCCESS,
-        showMsg: true,
-        showError: false,
         msg: 'وارد شدید.',
-        mode: null,
-        showRegister: false,
-        showLogin: false
       })
       dispatchInNewStack(dispatch, setUser(response.data))
 
     }).catch(e => {
       dispatchInNewStack(dispatch, {
         type: LOGIN_ERR,
-        showError: true,
         errorMsg: 'Error'
       })
     })

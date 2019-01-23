@@ -6,20 +6,13 @@ import axios from 'axios'
 import NETWORK from '../constants/network'
 import { generateNewKeypair } from '../actions/accountCreator'
 import { loginRequest, registerRequest, showLogin, showRegister } from '../actions/introduction'
+import { ResultTable } from './SetupPanes/ResultTable'
+import { logoutUser, setUser } from '../actions/user'
 
 class Introduction extends React.Component {
 
   constructor (props) {
     super(props)
-    // this.state = {
-    //   mode: 'login',
-    //   showError: false,
-    //   errorMsg: null,
-    //   showMsg: false,
-    //   msg: null,
-    //   showRegister: true,
-    //   showLogin: true
-    // }
     this.user = {
       firstName: null,
       lastName: null,
@@ -38,21 +31,6 @@ class Introduction extends React.Component {
     let {state, dispatch} = this.props
 
     dispatch(registerRequest(this.user))
-
-    // let {state, dispatch} = this.props
-
-    // let keyPair = generateNewKeypair()
-    // dispatch(keyPair)
-    //
-    // this.user.accountId = keyPair.pubKey
-    // console.log(this.user)
-    //
-    // axios.post(`${NETWORK.api.base}/users`, this.user).then(r => {
-    //   console.log(r)
-    //   this.setState({showMsg: true, showError: false, msg: 'ثبت شد.', mode: 'login', showRegister: false})
-    // }).catch(e => {
-    //   this.setState({showError: true, errorMsg: 'Error'})
-    // })
   }
 
   login () {
@@ -61,62 +39,45 @@ class Introduction extends React.Component {
     console.log(this.auth)
 
     dispatch(loginRequest(this.auth))
+  }
 
-    // let keyPair = generateNewKeypair()
-
-    // this.user.accountId = keyPair.pubKey
-
-    // const params = new URLSearchParams()
-    // params.append('username', this.auth.mobile)
-    // params.append('password', this.auth.password)
-    // params.append('grant_type', 'password')
-    //
-    // const options = {
-    //   method: 'POST',
-    //   headers: {'Authorization': `Basic aW9zOnZNeUs2dGVnWTU=`},
-    //   data: params,
-    //   url: `${NETWORK.api.base}/auth`
-    // }
-    // axios(options).then(r => {
-    //   console.log(r)
-    //   this.setState({
-    //     showMsg: true,
-    //     showError: false,
-    //     msg: 'وارد شدید.',
-    //     mode: null,
-    //     showRegister: false,
-    //     showLogin: false
-    //   })
-    // }).catch(e => {
-    //   this.setState({showError: true, errorMsg: 'Error'})
-    // })
+  logout(){
+    let {state, dispatch} = this.props
+    dispatch(showLogin())
+    dispatch(logoutUser())
+    setTimeout(() => {window.location.reload()}, 1000)
   }
 
   render () {
-    const {state, dispatch} = this.props
+    const {state, dispatch, user} = this.props
+    const isLoggedIn = user && user.access_token && user.accountId
 
     return <div className="Introduction">
       <div className="so-back">
         <div className="so-chunk">
           <div className="Introduction__container">
             <h2>Stellar Laboratory</h2>
-            <p className="Introduction__lead">The Stellar Laboratory is a set of tools that enables people to try out
-              and learn about the Stellar network. The laboratory can <a href="#txbuilder">build transactions</a>, <a
-                href="#txsigner">sign them</a>, and <a href="#explorer?resource=transactions&endpoint=create">submit
-                them to the network</a>. It can also <a href="#explorer">make requests to any of the Horizon
-                endpoints</a>.</p>
-
-            <p>For Stellar docs, take a look at the <a href="https://www.stellar.org/developers/">Stellar developers
-              site</a>.</p>
-            <div style={{width: 200, margin: 'auto'}}>
-              {state.showRegister &&
-              <button className="s-button" onClick={() => {dispatch(showRegister())}}>ثبت نام</button>}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {state.showLogin &&
-              <button className="s-button" onClick={() => {dispatch(showLogin())}}>ورود</button>}
-            </div>
+            {/*<p className="Introduction__lead">The Stellar Laboratory is a set of tools that enables people to try out*/}
+              {/*and learn about the Stellar network. The laboratory can <a href="#txbuilder">build transactions</a>, <a*/}
+                {/*href="#txsigner">sign them</a>, and <a href="#explorer?resource=transactions&endpoint=create">submit*/}
+                {/*them to the network</a>. It can also <a href="#explorer">make requests to any of the Horizon*/}
+                {/*endpoints</a>.</p>*/}
+            <br />
           </div>
-          <div>
+          {isLoggedIn && <div>
+            <p>{`${user.firstName} ${user.lastName} خوش آمدید.`}</p>
+            <button className="s-button red" onClick={() => {this.logout()}}>خروج</button>
+          </div>}
+          {!isLoggedIn && <div>
+            {state.showKeypair && <div>
+              <ResultTable body={state.keypair} keys={state.keypairFields} label="اطلاعات کیف پول شما" />
+            </div>}
+            <br />
+            {!isLoggedIn && <div style={{width: 200, margin: 'auto'}}>
+              {state.showRegister &&
+              <button className="s-button--min" onClick={() => {dispatch(showRegister())}}>ثبت نام &nbsp;|</button>}
+              {state.showLogin && <button className="s-button--min" onClick={() => {dispatch(showLogin())}}>ورود</button>}
+            </div>}
             {state.showError && <p>{state.errorMsg}</p>}
             {state.showMsg && <p>{state.msg}</p>}
             {state.mode === 'register' &&
@@ -150,7 +111,7 @@ class Introduction extends React.Component {
               <br/>
               <button className="s-button" onClick={() => {this.login()}}>ورود</button>
             </div>}
-          </div>
+          </div>}
         </div>
       </div>
     </div>

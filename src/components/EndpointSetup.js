@@ -22,9 +22,9 @@ export function EndpointSetup(props) {
         onUpdate={onUpdate}
         values={values}
         />
-      {streamingRow}
+      {/*{streamingRow}*/}
       <hr className="optionsTable__separator" />
-      <UrlRow url={request.url} method={request.method} />
+      {/*<UrlRow url={request.url} method={request.method} />*/}
       <PostDataRow formData={request.formData} />
       <SubmitRow onSubmit={onSubmit} />
     </div>

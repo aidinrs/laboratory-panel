@@ -20,7 +20,7 @@ function LaboratoryChrome(props) {
     return <a
       href={'#' + slug}
       className={classNames(
-        'buttonList__item s-button s-button--min',
+        'buttonList__item s-button s-button--min btn btn-warning',
         {'is-active': props.routing.location === slug})}
       key={slug}>
       {name}
@@ -32,11 +32,11 @@ function LaboratoryChrome(props) {
       <div className="so-chunk">
         <div className="so-siteHeader LaboratoryChrome__header">
           <span className="so-logo">
-            <a href="https://www.stellar.org/" className="so-logo__main">Stellar</a>
+            <a href="http://polychain.aut.ac.ir" className="so-logo__main">Polychain</a>
             <span className="so-logo__separator"> </span>
-            <a href="#" className="so-logo__subSite">laboratory</a>
+            <a href="#" className="so-logo__subSite">پیش فروش سکه</a>
           </span>
-          <NetworkPicker />
+          {/*<NetworkPicker />*/}
         </div>
       </div>
     </div>

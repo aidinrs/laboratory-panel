@@ -4,7 +4,7 @@ export default function Pair(props) {
   let optionalTextBreak, optionalText;
   if (props.optional) {
     optionalTextBreak = <br />
-    optionalText = <span className="optionsTable__pair__title__optional"> (optional)</span>;
+    optionalText = <span className="optionsTable__pair__title__optional"> (اختیاری)</span>;
   }
 
   return <div className="optionsTable__pair">

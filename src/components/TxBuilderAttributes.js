@@ -16,14 +16,14 @@ export default function TxBuilderAttributes(props) {
 
   return <div className="TransactionAttributes">
     <div className="TransactionOp__config TransactionOpConfig optionsTable">
-      <OptionsTablePair label={<span>Source Account <HelpMark href="https://www.stellar.org/developers/learn/concepts/accounts.html" /></span>}>
+      <OptionsTablePair label={<span>حساب مبدأ<HelpMark href="https://www.stellar.org/developers/learn/concepts/accounts.html" /></span>}>
         <PubKeyPicker
           value={attributes['sourceAccount']}
           onUpdate={(value) => {onUpdate('sourceAccount', value)}}
           />
-        <p className="optionsTable__pair__content__note">If you don't have an account yet, you can create and fund a test net account with the <a href="#account-creator">account creator</a>.</p>
+        <p className="optionsTable__pair__content__note"> اگر هنوز اکانتی ایجاد نکرده اید میتوانید یک اکانت بسازید و از شبکه تست به آن مبلغی را واریز کنید <a href="#account-creator">ساختن اکانت</a>.</p>
       </OptionsTablePair>
-      <OptionsTablePair label={<span>Transaction Sequence Number <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#sequence-number" /></span>}>
+      <OptionsTablePair label={<span>شماره ترتیب تراکنش <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#sequence-number" /></span>}>
         <SequencePicker
           value={attributes['sequence']}
           onUpdate={(value) => {onUpdate('sequence', value)}}
@@ -38,7 +38,7 @@ export default function TxBuilderAttributes(props) {
           />
         <p className="optionsTable__pair__content__note">The <a href="https://www.stellar.org/developers/learn/concepts/fees.html">network base fee</a> is currently set to 100 stroops (0.00001 lumens). Transaction fee is equal to base fee times number of operations in this transaction.</p>
       </OptionsTablePair>
-      <OptionsTablePair optional={true} label={<span>Memo <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#memo" /></span>}>
+      <OptionsTablePair optional={true} label={<span>از طرف(اختیاری) <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#memo" /></span>}>
         <MemoPicker
           value={{
             type: attributes.memoType,
@@ -47,7 +47,7 @@ export default function TxBuilderAttributes(props) {
           onUpdate={(value) => {onUpdate('memo', value)}}
           />
       </OptionsTablePair>
-      <OptionsTablePair optional={true} label={<span>Time Bounds <HelpMark href="https://www.stellar.org/developers/guides/concepts/transactions.html#time-bounds" /></span>}>
+      <OptionsTablePair optional={true} label={<span>بازه زمانی(اختیاری) <HelpMark href="https://www.stellar.org/developers/guides/concepts/transactions.html#time-bounds" /></span>}>
         <TimeBoundsPicker
           value={{
             minTime: attributes.minTime,

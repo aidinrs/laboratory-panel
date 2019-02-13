@@ -26,14 +26,14 @@ class TransactionBuilder extends React.Component {
       <div className="so-back">
         <div className="so-chunk">
           <div className="pageIntro">
-            <p>The transaction builder lets you build a new Stellar transaction.</p>
+            <p>در این بخش شما میتوانید یک تراکنش استلار ایجاد نمایید.</p>
             <p>
-              This transaction will start out with no signatures. To make it into the ledger, this transaction will then need to be signed and submitted to the network.
+              این تراکنش در ابتدا به هیچ گونه امضایی نیاز ندارد و تنها در صورتی که لازم باشد تا در شبکه منتشر شود باید امضا شود.
             </p>
           </div>
           <p className="TransactionBuilder__clearBar">
             <a className="TransactionBuilder__clearBar__link"
-            onClick={() => dispatch(resetTxbuilder())}>Clear form contents and start over</a>
+            onClick={() => dispatch(resetTxbuilder())}>پاک کردن محتویات و شروع دوباره</a>
           </p>
           <TxBuilderAttributes
             attributes={attributes}

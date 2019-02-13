@@ -158,12 +158,12 @@ class TransactionSigner extends React.Component {
         <div className="so-chunk">
           <div className="pageIntro">
             <p>
-              The transaction signer lets you add signatures to a Stellar transaction. Signatures are used in the network to prove that the account is authorized to perform the operations in the transaction.
+              در بخش امضای تراکنش شما میتوانید امضاهایی را به تراکنشهای استلار اضافه کنید.امضاها در شبکه استلار برای تایید هویت شخصی که دارنده حساب بوده و قصد انجام تراکنش را دارد استفاده میشود.
             </p>
             <p>
-              For simple transactions, you only need one signature from the correct account. Some advanced signatures may require more than one signature if there are multiple source accounts or signing keys.
+              برای تراکنشهای ساده شما تنها به یک امضا نیاز دارید.برخی از تراکنشهای پیچیده در صورتی که بیش از یک مبدأ و کلید خصوصی داشته باشند به بیش از یک امضا برای انجام تراکنش نیاز دارند.
             </p>
-            <p><a href="https://www.stellar.org/developers/learn/concepts/multi-sig.html" target="_blank">Read more about signatures on the developer's site.</a></p>
+            <p><a href="https://www.stellar.org/developers/learn/concepts/multi-sig.html" target="_blank">برای مطالعه بیشتر در مورد امضاها در سایت توسعه دهندگان بر روی این لینک کلیک کنید.</a></p>
           </div>
         </div>
       </div>

@@ -46,7 +46,13 @@
   @import 'TxSignerResult';
 
 @import 'XdrViewer';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
 
+@import '~bootstrap/scss/tables';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/forms';
 @import 'Fonts';
 
 // Unorganized stuffs below:
@@ -67,3 +73,8 @@
     margin-right: initial;
   }
 }
+
+
+body {
+  margin: 0;
+  background: linear-gradient(to left, rgba(255,131,7,40), rgba(34,193,195,40))}

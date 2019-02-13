@@ -8,15 +8,19 @@ const NETWORK = {
     base: 'http://localhost:8006'
   },
   available: {
-    test: {
-      horizonURL: 'https://horizon-testnet.stellar.org',
+    main: {
+      horizonURL: 'https://horizon.stellar.org',
       networkPassphrase: Networks.TESTNET
     },
-    public: {
+    test: {
+      horizonURL: 'https://horizon.stellar.org',
+      networkPassphrase: Networks.TESTNET
+    },
+    /*public: {
       horizonURL: 'https://horizon.stellar.org',
       networkPassphrase: Networks.PUBLIC
-    }
+    }*/
   },
-  defaultName: 'test',
+  defaultName: 'main',
 };
 export default NETWORK;

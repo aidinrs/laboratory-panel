@@ -12,6 +12,7 @@ import XdrViewer from './XdrViewer';
 import {RouterListener} from '../utilities/simpleRouter';
 import SLUG from '../constants/slug';
 import ChangeTrust from './ChangeTrust'
+import ManageOffer from './ManageOffer'
 
 function LaboratoryChrome(props) {
   const {user} = props
@@ -49,6 +50,7 @@ function LaboratoryChrome(props) {
           {isLoggedIn && tabItem('جستجوگر', SLUG.EXPLORER)}
           {isLoggedIn && tabItem('ایجاد خط اعتماد', SLUG.CHANGE_TRUST)}
           {isLoggedIn && tabItem('پرداخت', SLUG.PAYMENT)}
+          {isLoggedIn && tabItem('مدیریت پیشنهاد', SLUG.MANAGER_OFFER)}
           {isLoggedIn && tabItem('ساختن تراکنش', SLUG.TXBUILDER)}
           {isLoggedIn && tabItem('امضا تراکنش', SLUG.TXSIGNER)}
           {/*{tabItem('XDR Viewer', SLUG.XDRVIEWER)}*/}
@@ -77,6 +79,8 @@ function getContent(slug) {
       return <Payment />;
     case SLUG.CHANGE_TRUST:
       return <ChangeTrust />;
+    case SLUG.MANAGER_OFFER:
+      return <ManageOffer />;
     case 'xdr-viewer':
       return <XdrViewer />;
     default:

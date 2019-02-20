@@ -8,6 +8,7 @@ import network from './network';
 import routing from './routing';
 import introduction from './introduction';
 import payment from './payment';
+import manageOffer from './manageOffer';
 import changeTrust from './changeTrust';
 import user from './user';
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   introduction,
   payment,
   changeTrust,
+  manageOffer,
   user
 });
 

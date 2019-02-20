@@ -8,6 +8,7 @@ import { generateNewKeypair } from '../actions/accountCreator'
 import { loginRequest, registerRequest, showLogin, showRegister } from '../actions/introduction'
 import { ResultTable } from './SetupPanes/ResultTable'
 import { logoutUser, setUser } from '../actions/user'
+import classNames from 'classnames'
 
 class Introduction extends React.Component {
 
@@ -66,6 +67,7 @@ class Introduction extends React.Component {
           </div>
           {isLoggedIn && <div>
             <p>{`${user.firstName} ${user.lastName} خوش آمدید.`}</p>
+            <p>برای <a className={'link-payment'} href={'#payment'}>پرداخت</a> کلیک کنید.</p>
             <button className="s-button red btn-warning" onClick={() => {this.logout()}}>خروج</button>
           </div>}
           {!isLoggedIn && <div>

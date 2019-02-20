@@ -9,11 +9,11 @@ const NETWORK = {
   },
   available: {
     main: {
-      horizonURL: 'https://horizon.stellar.org',
+      horizonURL: 'https://horizon-testnet.stellar.org',
       networkPassphrase: Networks.TESTNET
     },
     test: {
-      horizonURL: 'https://horizon.stellar.org',
+      horizonURL: 'https://horizon-testnet.stellar.org',
       networkPassphrase: Networks.TESTNET
     },
     /*public: {

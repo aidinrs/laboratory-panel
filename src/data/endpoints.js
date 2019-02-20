@@ -23,7 +23,7 @@ export const endpointsMap = {
         'path': {
           template: '/accounts/{account_id}',
         },
-        'fields': [{name: 'balances', fields: ['balance']}, 'sequence'],
+        'fields': [{name: 'balances', fields: ['balance', 'asset_type'], array: true}, 'sequence', 'subentry_count'],
         'setupComponent': require('../components/SetupPanes/SingleAccount'),
       }
     }
@@ -38,6 +38,7 @@ export const endpointsMap = {
         'path': {
           template: '/assets{?asset_code,asset_issuer,cursor,order,limit}',
         },
+        'fields': [{name: 'records', fields: ['amount', 'asset_code', 'asset_type', 'asset_issuer'], array: true}],
         'setupComponent': require('../components/SetupPanes/AllAssets'),
       }
     }
@@ -329,6 +330,7 @@ export const endpointsMap = {
         'path': {
           template: '/transactions{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['created_at', 'hash', 'source_account', 'fee'], array: true}],
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {

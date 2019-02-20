@@ -9,8 +9,8 @@ import { loginRequest, registerRequest, showLogin, showRegister } from '../actio
 import { ResultTable } from './SetupPanes/ResultTable'
 import { logoutUser, setUser } from '../actions/user'
 
-const ISSUING_ACC = 'GBI2V63UXNBIJIA4GPCRJYDFJQMQP5EP3UGRCHXSYYART35S42MTIA6S'
-const BASE_ACC = 'GCNSGJ4GW3C2DF65RIXUGFNN7MNLZKLIHNTTV5SWUUV34CKVA25UWOVW'
+const ISSUING_ACC = NETWORK.accounts.issuing
+const BASE_ACC = NETWORK.accounts.base
 
 class Introduction extends React.Component {
 

@@ -28,7 +28,7 @@ export default class TxBuilderResult extends React.Component {
 
     let finalResult, errorTitleText, successTitleText, signingInstructions, signingLink, xdrLink;
     if (validationErrors.length > 0) {
-      errorTitleText = 'Form validation errors:';
+      errorTitleText = 'خطاهای اعتبارسنجی فرم  ';
       finalResult = formatErrorList(validationErrors);
     } else {
       let transactionBuild = Libify.buildTransaction(attributes, operations, new Network(this.props.networkPassphrase));

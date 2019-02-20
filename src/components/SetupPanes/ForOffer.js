@@ -8,7 +8,7 @@ export default function ForOffer(props) {
   let content = <PositiveIntPicker
     value={props.values['offer_id']}
     onUpdate={(value) => {props.onUpdate('offer_id', value)}}
-    placeholder={'Example: 323223'}
+    placeholder={'مثال: 323223'}
   />
 
   return <For label={label} content={content} {...props} />

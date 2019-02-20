@@ -14,7 +14,7 @@ export default function OperationTypePicker(props) {
   return <SelectPicker
     value={value}
     onUpdate={onUpdate}
-    placeholder="Select operation type"
+    placeholder="نوع علیات را انتخاب کنید."
     items={operationItemMap}
     />
 }

@@ -89,14 +89,14 @@ export default function SetOptions(props) {
         value={props.values['signer']}
         onUpdate={(value) => {props.onUpdate('signer', value)}}
         />
-      <p className="optionsTable__pair__content__note">Used to add/remove or adjust weight of an additional signer on the account.</p>
+      <p className="optionsTable__pair__content__note">برای حذف/اضافه و یا تنظیم وزن امضاکنندگان حساب استفاده میشود.</p>
     </OptionsTablePair>,
     <OptionsTablePair
       label={<span>Home Domain <HelpMark href="https://www.stellar.org/developers/learn/concepts/multi-sig.html#additional-signing-keys" /></span>}
       optional={true} key="homeDomain">
       <TextPicker
         value={props.values['homeDomain']}
-        placeholder="Example: example.com"
+        placeholder="مثال: example.com"
         onUpdate={(value) => {props.onUpdate('homeDomain', value)}}
         />
     </OptionsTablePair>,

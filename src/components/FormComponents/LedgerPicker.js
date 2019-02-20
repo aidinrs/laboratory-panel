@@ -4,6 +4,6 @@ import PositiveIntPicker from './PositiveIntPicker';
 export default function LedgerPicker(props) {
   return <PositiveIntPicker
     {...props}
-    placeholder={props.placeholder || 'Example: 1714814'}
+    placeholder={props.placeholder || 'مثال: 1714814'}
   />
 }

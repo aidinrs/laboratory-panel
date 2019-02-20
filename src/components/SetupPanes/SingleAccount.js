@@ -4,7 +4,7 @@ import PubKeyPicker from '../FormComponents/PubKeyPicker.js';
 
 export default function SingleAccount(props) {
   return <div>
-    <OptionsTablePair label="Account ID">
+    <OptionsTablePair label="شناسه حساب">
       <PubKeyPicker
       value={props.values['account_id']}
       onUpdate={(value) => {props.onUpdate('account_id', value)}}

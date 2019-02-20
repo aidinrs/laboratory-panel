@@ -36,15 +36,15 @@ export default class TransactionImporter extends React.Component {
         <textarea
           className="xdrInput__input__textarea"
           onChange={this.updateTextarea.bind(this)}
-          placeholder="Example: AAAAAGXNhB2hIkbP//jgzn4os/AAAAZAB+BaLPAAA5Q/xL..."></textarea>
+          placeholder="مثال: AAAAAGXNhB2hIkbP//jgzn4os/AAAAZAB+BaLPAAA5Q/xL..."></textarea>
       </div>
       <div className="xdrInput__message">
         {message}
       </div>
       <div className="s-buttonList">
-        <button className="s-button"
+        <button className="s-button btn-warning"
           disabled={!submitEnabled} onClick={this.triggerImport.bind(this)}>
-          Import Transaction</button>
+          وارد کردن تراکنش</button>
       </div>
     </div>
   }

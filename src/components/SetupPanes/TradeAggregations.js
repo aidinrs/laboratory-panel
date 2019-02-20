@@ -7,43 +7,43 @@ import OrderPicker from '../FormComponents/OrderPicker.js';
 
 export default function TradeAggregations(props) {
   return <div>
-    <OptionsTablePair label="Base Asset" optional={false}>
+    <OptionsTablePair label="سکه پایه" optional={false}>
       <AssetPicker
       value={props.values['base_asset']}
       onUpdate={(value) => {props.onUpdate('base_asset', value)}}
       />
     </OptionsTablePair>
-    <OptionsTablePair label="Counter Asset" optional={false}>
+    <OptionsTablePair label="سکه شمارشی" optional={false}>
       <AssetPicker
       value={props.values['counter_asset']}
       onUpdate={(value) => {props.onUpdate('counter_asset', value)}}
       />
     </OptionsTablePair>
-    <OptionsTablePair label="Start Time" optional={false}>
+    <OptionsTablePair label="زمان شروع" optional={false}>
       <TextPicker
         value={props.values['start_time']}
         onUpdate={(value) => {props.onUpdate('start_time', value)}}
         />
     </OptionsTablePair>
-    <OptionsTablePair label="End Time" optional={false}>
+    <OptionsTablePair label="زمان پایان" optional={false}>
       <TextPicker
         value={props.values['end_time']}
         onUpdate={(value) => {props.onUpdate('end_time', value)}}
         />
     </OptionsTablePair>
-    <OptionsTablePair label="Resolution" optional={false}>
+    <OptionsTablePair label="شفافیت" optional={false}>
       <TextPicker
         value={props.values['resolution']}
         onUpdate={(value) => {props.onUpdate('resolution', value)}}
         />
     </OptionsTablePair>
-    <OptionsTablePair label="Limit" optional={true}>
+    <OptionsTablePair label="محدودیت" optional={true}>
       <PositiveIntPicker
       value={props.values['limit']}
         onUpdate={(value) => {props.onUpdate('limit', value)}}
         />
     </OptionsTablePair>
-    <OptionsTablePair label="Order" optional={true}>
+    <OptionsTablePair label="به ترتیب" optional={true}>
       <OrderPicker
         value={props.values['order']}
         onUpdate={(value) => {props.onUpdate('order', value)}}

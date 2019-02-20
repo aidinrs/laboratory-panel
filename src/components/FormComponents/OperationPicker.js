@@ -6,7 +6,7 @@ export default function OperationPicker(props) {
 
   return <PositiveIntPicker
     value={value}
-    placeholder="Example: 55834578945"
+    placeholder="مثال: 55834578945"
     onUpdate={(value) => onUpdate(value)}
     />
 }

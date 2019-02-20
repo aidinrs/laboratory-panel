@@ -45,7 +45,7 @@ class Payment extends React.Component {
                 <TextPicker onUpdate={(v) => {dispatch(setForm('asset_issuer', v))}}/>
               </OptionsTablePair>}
               <br/>
-              <button className="s-button" onClick={() => {dispatch(sendPayment(form))}}>ارسال</button>
+              <button className="s-button btn-warning" onClick={() => {dispatch(sendPayment(form))}}>ارسال</button>
             </div>
           </div>}
         </div>

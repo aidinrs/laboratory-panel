@@ -100,10 +100,10 @@ Libify.Memo = function(opts) {
 // Takes in a type and a pile of options and attempts to turn it into a valid
 // js-stellar-sdk operation. If not, it will throw an error.
 Libify.Operation = function(type, opts) {
-  assertNotEmpty(type, 'Operation type is required');
+  assertNotEmpty(type, 'وارد کردن نوع عملیات الزامی است.');
   let opFunction = Libify.Operation[type];
   if (typeof opFunction === 'undefined' || _.has(Libify.Operation, 'opFunction')) {
-    throw new Error('Unknown operation type: ' + type);
+    throw new Error('نوع عملیات نامشخص است' + type);
   }
   return opFunction(opts);
 }
@@ -245,7 +245,7 @@ Libify.Operation.setOptions = function(opts) {
           signer[opts.signer.type] = Buffer.from(opts.signer.content, "hex");
           break;
         default:
-          throw new Error('Invalid signer type');
+          throw new Error('نوع امضا کننده نامعتبر است.');
       }
     } else {
       throw new Error('Enter signer key and weight');
@@ -308,9 +308,9 @@ Libify.buildTransaction = function(attributes, operations, networkObj) {
     if (attributes.fee !== '') {
       const MAX_UINT32 = Math.pow( 2, 32 ) - 1;
       if (parseInt(attributes.fee) > MAX_UINT32) {
-        throw Error(`Base Fee: too large (invalid 32-bit unisigned integer)`);
+        throw Error(`اعتبار پایه بیش از اندازه بزرگ است:(عدد ۳۲ بیتی امضا نشده نامعتبر است)`);
       }
-      
+
       opts.fee = attributes.fee;
     }
 
@@ -375,7 +375,7 @@ Libify.signTransaction = function(txXdr, signers, networkObj, ledgerWalletSigs) 
       if (signer.charAt(0) == 'S') {
         if (!Sdk.StrKey.isValidEd25519SecretSeed(signer)) {
           return {
-            message: 'One of secret keys is invalid'
+            message: 'یکی از کلیدهای خصوصی نامعتبر است.'
           }
         }
         validSecretKeys.push(signer);
@@ -383,7 +383,7 @@ Libify.signTransaction = function(txXdr, signers, networkObj, ledgerWalletSigs) 
         // Hash preimage
         if (!signer.match(/^[0-9a-f]{2,128}$/gi) || signer.length % 2 == 1) {
           return {
-            message: 'Hash preimage is invalid'
+            message: 'پیش تصویر چکیده نامعتبر است.'
           }
         }
         validPreimages.push(signer);

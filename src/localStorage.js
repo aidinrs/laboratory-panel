@@ -1,10 +1,12 @@
+import {defaultNetwork} from './reducers/network'
 export const loadState = () => {
   try {
     const serializerdState = localStorage.getItem('state');
     if (serializerdState === null) {
       return undefined;
     }
-    return JSON.parse(serializerdState);
+    let data = JSON.parse(serializerdState);
+    data.network = defaultNetwork
   } catch (err) {
     return undefined;
   }

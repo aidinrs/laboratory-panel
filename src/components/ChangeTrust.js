@@ -26,16 +26,16 @@ class ChangeTrust extends React.Component {
             {general.showMsg && <p>{general.msg}</p>}
             <div>
               <OptionsTablePair label="کلید خصوصی" key="source">
-                <TextPicker onUpdate={(v) => {dispatch(setForm('source', v))}}/>
+                <TextPicker value={form.source} onUpdate={(v) => {dispatch(setForm('source', v))}}/>
               </OptionsTablePair>
               <OptionsTablePair label="کد دارایی" key="asset_code">
-                <TextPicker onUpdate={(v) => {dispatch(setForm('asset_code', v))}} placeholder="coin"/>
+                <TextPicker value={form.asset_code} onUpdate={(v) => {dispatch(setForm('asset_code', v))}} placeholder="coin"/>
               </OptionsTablePair>
               <OptionsTablePair label="آدرس منتشر کننده دارایی" key="asset_issuer">
-                <TextPicker onUpdate={(v) => {dispatch(setForm('asset_issuer', v))}}/>
+                <TextPicker value={form.asset_issuer} onUpdate={(v) => {dispatch(setForm('asset_issuer', v))}}/>
               </OptionsTablePair>
               <OptionsTablePair label="سقف اعتماد" key="limit">
-                <TextPicker onUpdate={(v) => {dispatch(setForm('limit', v))}}/>
+                <TextPicker value={form.limit} onUpdate={(v) => {dispatch(setForm('limit', v))}}/>
               </OptionsTablePair>
               <br/>
               <button className="s-button" onClick={() => {dispatch(sendChangeTrust(form))}}>ارسال</button>

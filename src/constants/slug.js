@@ -8,5 +8,7 @@ const SLUG = {
   TXSIGNER: 'txsigner',
   XDRVIEWER: 'xdr-viewer',
   PAYMENT: 'payment',
+  CHANGE_TRUST: 'change-trust',
+  MANAGER_OFFER: 'manage-offer'
 };
 export default SLUG;

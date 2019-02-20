@@ -17,7 +17,7 @@ function XdrViewer(props) {
 
   let xdrTypeIsValid = _.indexOf(xdrTypes, state.type) >= 0;
   let treeView, errorMessage;
-  if (state.input === '') { 
+  if (state.input === '') {
     errorMessage = <p>Enter a base-64 encoded XDR blob to decode.</p>;
   } else if (!xdrTypeIsValid) {
     errorMessage = <p>Please select a XDR type</p>;
@@ -55,7 +55,7 @@ function XdrViewer(props) {
                 dispatch(fetchSigners(event.target.value, baseURL, networkPassphrase))
               }
             }}
-            placeholder="Example: AAAAAGXNhB2hIkbP//jgzn4os/AAAAZAB+BaLPAAA5Q/xL..."></textarea>
+            placeholder="مثال: AAAAAGXNhB2hIkbP//jgzn4os/AAAAZAB+BaLPAAA5Q/xL..."></textarea>
         </div>
         <div className="xdrInput__message">
           {message}

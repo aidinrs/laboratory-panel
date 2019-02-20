@@ -16,54 +16,46 @@ export default function TxBuilderAttributes(props) {
 
   return <div className="TransactionAttributes">
     <div className="TransactionOp__config TransactionOpConfig optionsTable">
-      <OptionsTablePair label={<span>Source Account <HelpMark href="https://www.stellar.org/developers/learn/concepts/accounts.html" /></span>}>
+      <OptionsTablePair label={<span>حساب مبدأ<HelpMark href="https://www.stellar.org/developers/learn/concepts/accounts.html" /></span>}>
         <PubKeyPicker
           value={attributes['sourceAccount']}
           onUpdate={(value) => {onUpdate('sourceAccount', value)}}
-        />
-        <p className="optionsTable__pair__content__note">If you don't have an account yet, you can create and fund a test net account with the <a href="#account-creator">account creator</a>.</p>
+          />
+        <p className="optionsTable__pair__content__note"> اگر هنوز اکانتی ایجاد نکرده اید میتوانید یک اکانت بسازید و از شبکه تست به آن مبلغی را واریز کنید <a href="#account-creator">ساختن اکانت</a>.</p>
       </OptionsTablePair>
-      <OptionsTablePair label={<span>Transaction Sequence Number <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#sequence-number" /></span>}>
+      <OptionsTablePair label={<span>شماره ترتیب تراکنش <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#sequence-number" /></span>}>
         <SequencePicker
           value={attributes['sequence']}
           onUpdate={(value) => {onUpdate('sequence', value)}}
-        />
-        <p className="optionsTable__pair__content__note">The transaction sequence number is usually one higher than current account sequence number.</p>
+          />
+        <p className="optionsTable__pair__content__note">.شماره توالی تراکنش یکی بیشتر از شماره توالی فعلی حساب میباشد</p>
         <SequenceFetcher />
       </OptionsTablePair>
-      <OptionsTablePair optional={true} label={<span>Base Fee <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#fee" /></span>}>
+      <OptionsTablePair optional={true} label={<span>ارز پایه <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#fee" /></span>}>
         <StroopsPicker
           value={attributes['fee']}
           onUpdate={(value) => {onUpdate('fee', value)}}
-        />
-        <p className="optionsTable__pair__content__note">The <a href="https://www.stellar.org/developers/learn/concepts/fees.html">network base fee</a> is currently set to 100 stroops (0.00001 lumens). Transaction fee is equal to base fee times number of operations in this transaction.</p>
+          />
+        <p className="optionsTable__pair__content__note"> <a href="https://www.stellar.org/developers/learn/concepts/fees.html">کارمزد پایه شبکه</a> معادل ۱۰۰ استروپ در نظرگرفته شده است.کارمزد تراکنش برابر با کارمزد پایه در تعداد عملیات در یک تراکنش میباشد. </p>
       </OptionsTablePair>
-      <OptionsTablePair optional={true} label={<span>Memo <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#memo" /></span>}>
+      <OptionsTablePair optional={true} label={<span>از طرف(اختیاری) <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#memo" /></span>}>
         <MemoPicker
           value={{
             type: attributes.memoType,
             content: attributes.memoContent,
           }}
           onUpdate={(value) => {onUpdate('memo', value)}}
-        />
+          />
       </OptionsTablePair>
-      <OptionsTablePair optional={true} label={<span>Time Bounds <HelpMark href="https://www.stellar.org/developers/guides/concepts/transactions.html#time-bounds" /></span>}>
+      <OptionsTablePair optional={true} label={<span>بازه زمانی(اختیاری) <HelpMark href="https://www.stellar.org/developers/guides/concepts/transactions.html#time-bounds" /></span>}>
         <TimeBoundsPicker
           value={{
             minTime: attributes.minTime,
             maxTime: attributes.maxTime
           }}
           onUpdate={(value) => {onUpdate('timebounds', value)}}
-        />
-        <p className="optionsTable__pair__content__note">Enter <a href="http://www.epochconverter.com/" target="_blank">unix timestamp</a> values of time bounds when this transaction will be valid.</p>
-        <p className="optionsTable__pair__content__note">For regular transactions, it is highly recommended to set <code>max_time</code> to get <a href="https://github.com/stellar/stellar-core/issues/1811" target="_blank">a final result</a> of a transaction in a defined time.</p>
-        <p className="optionsTable__pair__content__note">
-          <a
-            className="s-button"
-            onClick={() => onUpdate('timebounds', {maxTime: Math.ceil(new Date().getTime()/1000) + 5*60})}
-          >Set to 5 minutes from now</a>
-          <br />
-        </p>
+          />
+        <p className="optionsTable__pair__content__note">وارد کنید <a href="http://www.epochconverter.com/" target="_blank">فرمت زمانی یونیکس</a> .مقادیر محدویدت های زمانی درصورتی که این تراکنش معتبر باشد.</p>
       </OptionsTablePair>
     </div>
   </div>
@@ -93,7 +85,7 @@ class sequenceFetcherClass extends React.Component {
         onClick={() => dispatch(
           fetchSequence(attributes.sourceAccount, horizonURL)
         )}
-      >Fetch next sequence number for account starting with "{truncatedAccountId}"</a>
+        >Fetch next sequence number for account starting with "{truncatedAccountId}"</a>
       <br />
       <small>Fetching from: <code>{horizonURL}</code></small><br />
       {sequenceErrorMessage}

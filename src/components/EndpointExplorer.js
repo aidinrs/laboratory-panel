@@ -40,12 +40,6 @@ class EndpointExplorer extends React.Component {
 
     return <div className="so-back">
       <div className="so-chunk">
-        <div className="pageIntro">
-          <p>
-            This tool can be used to run queries against the <a href="https://www.stellar.org/developers/reference/"
-                                                                target="_blank">REST API endpoints</a> on the
-            Horizon server. Horizon is the client facing library for the Stellar ecosystem.</p>
-        </div>
         <div className="EndpointExplorer">
           <div className="EndpointExplorer__picker">
             <EndpointPicker
@@ -59,8 +53,8 @@ class EndpointExplorer extends React.Component {
             {endpointSetup}
           </div>
           <div className="EndpointExplorer__setup">
-            <ResultTable body={results.body && results.body[0] ? JSON.parse(results.body[0]) :{}} keys={(endpoint && endpoint.fields) ? endpoint.fields : []}/>
-          </div>
+            <ResultTable body={results.body && results.body[0] ? (JSON.parse(results.body[0])._embedded ?  JSON.parse(results.body[0])._embedded : JSON.parse(results.body[0])): {}}
+                         keys={(endpoint && endpoint.fields) ? endpoint.fields : []}/>          </div>
           {currentResource === 'accounts' && currentEndpoint === 'all' && results.body && results.body[0] &&
           <div>
             <table className="table table-striped">

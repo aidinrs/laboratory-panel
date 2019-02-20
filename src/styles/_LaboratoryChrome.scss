@@ -3,9 +3,21 @@
 }
 
 .LaboratoryChrome__siteNavBack {
-  border-top: 1px solid $s-color-neutral7;
-  border-bottom: 1px solid $s-color-neutral7;
+  border-top: 1px solid;
+  border-bottom: 1px solid ;
   padding-top: 1.5em;
   padding-bottom: 1.5em;
-  background: $s-color-neutral8;
+  background: transparent;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
+//div span.so-logo a div#aa{
+//
+//}
+.so-logo__main,
+a.so-logo__main {
+  color: rgba(255,140,33,98);
+}
+

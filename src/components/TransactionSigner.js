@@ -35,7 +35,7 @@ class TransactionSigner extends React.Component {
       content = <div className="so-back">
         <div className="so-chunk">
           <div className="TxSignerImport TransactionSigner__import">
-            <p className="TxSignerImport__title">Import a transaction envelope in XDR format:</p>
+            <p className="TxSignerImport__title">یک تراکنش در فرمت XDR وارد کنید </p>
             <TransactionImporter onImport={(xdr) => dispatch(importFromXdr(xdr))}/>
           </div>
         </div>
@@ -78,7 +78,7 @@ class TransactionSigner extends React.Component {
 
       let ledgerwalletMessage;
       if (ledgerwalletStatus.message) {
-  
+
         let messageAlertType;
         if (ledgerwalletStatus.status === 'loading') {
           messageAlertType = 's-alert--info';
@@ -87,13 +87,13 @@ class TransactionSigner extends React.Component {
         } else if (ledgerwalletStatus.status === 'failure') {
           messageAlertType = 's-alert--alert';
         }
-  
+
         ledgerwalletMessage = <div>
           <br />
           <div className={`s-alert TxSignerKeys__ledgerwallet_message ${messageAlertType}`}> {ledgerwalletStatus.message} </div>
         </div>
       }
-  
+
 
       content = <div>
         <div className="so-back">
@@ -131,7 +131,7 @@ class TransactionSigner extends React.Component {
                     value={bipPath}
                     onUpdate={(value) => dispatch(setBIPPath(value))}
                   />
-                  <button  
+                  <button
                     className="s-button TxSignerKeys__signBipPath"
                     onClick={() => {dispatch(signWithLedger(xdr, bipPath))}}
                   >Sign with BIP Path</button>
@@ -158,12 +158,12 @@ class TransactionSigner extends React.Component {
         <div className="so-chunk">
           <div className="pageIntro">
             <p>
-              The transaction signer lets you add signatures to a Stellar transaction. Signatures are used in the network to prove that the account is authorized to perform the operations in the transaction.
+              در بخش امضای تراکنش شما میتوانید امضاهایی را به تراکنشهای استلار اضافه کنید.امضاها در شبکه استلار برای تایید هویت شخصی که دارنده حساب بوده و قصد انجام تراکنش را دارد استفاده میشود.
             </p>
             <p>
-              For simple transactions, you only need one signature from the correct account. Some advanced signatures may require more than one signature if there are multiple source accounts or signing keys.
+              برای تراکنشهای ساده شما تنها به یک امضا نیاز دارید.برخی از تراکنشهای پیچیده در صورتی که بیش از یک مبدأ و کلید خصوصی داشته باشند به بیش از یک امضا برای انجام تراکنش نیاز دارند.
             </p>
-            <p><a href="https://www.stellar.org/developers/learn/concepts/multi-sig.html" target="_blank">Read more about signatures on the developer's site.</a></p>
+            <p><a href="https://www.stellar.org/developers/learn/concepts/multi-sig.html" target="_blank">برای مطالعه بیشتر در مورد امضاها در سایت توسعه دهندگان بر روی این لینک کلیک کنید.</a></p>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function TransactionPicker(props) {
       onChange={(event) => {
         onUpdate(event.target.value);
       }}
-      placeholder='Example: 3389e9f0f1a65f19736cacf544c2e825313e8447f569233bb8db39aa607c8889'
+      placeholder='مثال: 3389e9f0f1a65f19736cacf544c2e825313e8447f569233bb8db39aa607c8889'
       className="picker picker--textInput" />
     <PickerError message={validator(value)} />
   </div>
@@ -21,6 +21,6 @@ function validator(value) {
     return;
   }
   if (value.match(/^[0-9a-f]{64}$/g) === null) {
-    return 'Transaction hash is invalid.';
+    return 'چکیده تراکنش نامعتبر است.';
   };
 }

@@ -4,7 +4,7 @@ import For from './For';
 import PubKeyPicker from '../FormComponents/PubKeyPicker.js';
 
 export default function ForAccount(props) {
-  let label = 'Account ID';
+  let label = 'شناسه حساب';
   let content = <PubKeyPicker
     value={props.values['account_id']}
     onUpdate={(value) => {props.onUpdate('account_id', value)}}

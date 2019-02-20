@@ -8,8 +8,8 @@ export default function OrderPicker(props) {
     value={value}
     onUpdate={(value) => onUpdate(value)}
     items={{
-      'asc': 'asc',
-      'desc': 'desc',
+      'asc': 'صعودی',
+      'desc': 'نزولی',
     }}
     />
 }

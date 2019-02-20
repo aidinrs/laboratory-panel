@@ -12,15 +12,19 @@ const NETWORK = {
     base: 'https://horizon-testnet.stellar.org'
   },
   available: {
+    main: {
+      horizonURL: 'https://horizon-testnet.stellar.org',
+      networkPassphrase: Networks.TESTNET
+    },
     test: {
       horizonURL: 'https://horizon-testnet.stellar.org',
       networkPassphrase: Networks.TESTNET
     },
-    public: {
+    /*public: {
       horizonURL: 'https://horizon.stellar.org',
       networkPassphrase: Networks.PUBLIC
-    }
+    }*/
   },
-  defaultName: 'test',
+  defaultName: 'main',
 };
 export default NETWORK;

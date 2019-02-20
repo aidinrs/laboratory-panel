@@ -8,7 +8,7 @@ export function EndpointPicker(props) {
   let resources = makeItems(endpointsMap);
 
   let resourcePicker = <div className="EndpointPicker__section">
-    <p className="EndpointPicker__section__title">1. Select a resource</p>
+    <p className="EndpointPicker__section__title">یک منبع انتخاب کنید</p>
     <ButtonGroup
       items={resources}
       onChange={newResource => onChange(newResource, "")}
@@ -20,7 +20,7 @@ export function EndpointPicker(props) {
   if (currentResource !== "") {
     let endpoints = makeItems(endpointsMap[currentResource].endpoints);
     endpointPicker = <div className="EndpointPicker__section">
-      <p className="EndpointPicker__section__title">2. Select an endpoint</p>
+      <p className="EndpointPicker__section__title">یک نقطه پایانی انتخاب کنید</p>
       <ButtonGroup
         items={endpoints}
         onChange={newEndpoint => onChange(currentResource, newEndpoint)}

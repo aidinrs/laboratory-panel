@@ -6,7 +6,7 @@ export default function SequencePicker(props) {
 
   return <PositiveIntPicker
     value={value}
-    placeholder='Amount in stroops (1 lumen = 10,000,000 stroops)'
+    placeholder='مقدار در واحد استروپ(۱لومن = ۱۰۰۰۰۰۰۰استروپ)'
     onUpdate={(value) => onUpdate(value)}
     />
 }

@@ -16,10 +16,10 @@ export default class TxBuilderResult extends React.Component {
     let validationErrors = [];
 
     if (attributes.sourceAccount === '') {
-      validationErrors.push('Source account ID is a required field');
+      validationErrors.push('مشخصات حساب مبدا اجباری است.');
     }
     if (attributes.sequence === '') {
-      validationErrors.push('Sequence number is a required field');
+      validationErrors.push('شماره ترتیب تراکنش اجباری است.');
     }
     let memoIsNone = attributes.memoType === 'MEMO_NONE' || attributes.memoType === '';
     if (!memoIsNone && attributes.memoContent === '') {
@@ -28,13 +28,13 @@ export default class TxBuilderResult extends React.Component {
 
     let finalResult, errorTitleText, successTitleText, signingInstructions, signingLink, xdrLink;
     if (validationErrors.length > 0) {
-      errorTitleText = 'Form validation errors:';
+      errorTitleText = 'خطاهای اعتبارسنجی فرم  ';
       finalResult = formatErrorList(validationErrors);
     } else {
       let transactionBuild = Libify.buildTransaction(attributes, operations, new Network(this.props.networkPassphrase));
 
       if (transactionBuild.errors.length > 0) {
-        errorTitleText = `Transaction building errors:`;
+        errorTitleText = `خطاهای فرم را اصلاح نمایید:`;
         finalResult = formatErrorList(transactionBuild.errors);
       } else {
         successTitleText = `Success! Transaction Envelope XDR:`;

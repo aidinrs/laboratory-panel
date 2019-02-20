@@ -8,6 +8,7 @@ import { generateNewKeypair } from '../actions/accountCreator'
 import { loginRequest, registerRequest, showLogin, showRegister } from '../actions/introduction'
 import { ResultTable } from './SetupPanes/ResultTable'
 import { logoutUser, setUser } from '../actions/user'
+import classNames from 'classnames'
 
 const ISSUING_ACC = NETWORK.accounts.issuing
 const BASE_ACC = NETWORK.accounts.base
@@ -137,28 +138,28 @@ class Introduction extends React.Component {
       <div className="so-back">
         <div className="so-chunk">
           <div className="Introduction__container">
-            <h2>Stellar Laboratory</h2>
+            <h2>سامانه پیش فروش سکه</h2>
             {/*<p className="Introduction__lead">The Stellar Laboratory is a set of tools that enables people to try out*/}
-            {/*and learn about the Stellar network. The laboratory can <a href="#txbuilder">build transactions</a>, <a*/}
-            {/*href="#txsigner">sign them</a>, and <a href="#explorer?resource=transactions&endpoint=create">submit*/}
-            {/*them to the network</a>. It can also <a href="#explorer">make requests to any of the Horizon*/}
-            {/*endpoints</a>.</p>*/}
-            <br/>
+              {/*and learn about the Stellar network. The laboratory can <a href="#txbuilder">build transactions</a>, <a*/}
+                {/*href="#txsigner">sign them</a>, and <a href="#explorer?resource=transactions&endpoint=create">submit*/}
+                {/*them to the network</a>. It can also <a href="#explorer">make requests to any of the Horizon*/}
+                {/*endpoints</a>.</p>*/}
+            <br />
           </div>
           {isLoggedIn && <div>
             <p>{`${user.firstName} ${user.lastName} خوش آمدید.`}</p>
-            <button className="btn btn-success" onClick={() => {this.logout()}}>خروج</button>
+            <p>برای <a className={'link-payment'} href={'#payment'}>پرداخت</a> کلیک کنید.</p>
+            <button className="s-button red btn-warning" onClick={() => {this.logout()}}>خروج</button>
           </div>}
           {!isLoggedIn && <div>
             {state.showKeypair && <div>
-              <ResultTable body={state.keypair} keys={state.keypairFields} label="اطلاعات کیف پول شما"/>
+              <ResultTable body={state.keypair} keys={state.keypairFields} label="اطلاعات کیف پول شما" />
             </div>}
-            <br/>
+            <br />
             {!isLoggedIn && <div style={{width: 200, margin: 'auto'}}>
               {state.showRegister &&
               <button className="s-button--min" onClick={() => {dispatch(showRegister())}}>ثبت نام &nbsp;|</button>}
-              {state.showLogin &&
-              <button className="s-button--min" onClick={() => {dispatch(showLogin())}}>ورود</button>}
+              {state.showLogin && <button className="s-button--min" onClick={() => {dispatch(showLogin())}}>ورود</button>}
             </div>}
             {state.showError && <p>{state.errorMsg}</p>}
             {state.showMsg && <p>{state.msg}</p>}
@@ -180,7 +181,7 @@ class Introduction extends React.Component {
                 <TextPicker onUpdate={(v) => {this.user.password = v}} placeholder='رمز عبور'/>
               </OptionsTablePair>
               <br/>
-              <button className="s-button" onClick={() => {this.register()}}>ارسال</button>
+              <button className="s-button btn-warning" onClick={() => {this.register()}}>ارسال</button>
             </div>}
             {state.mode === 'login' &&
             <div>

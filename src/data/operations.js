@@ -23,7 +23,7 @@ export const operationsMap = [
   },
   {
     name: 'payment',
-    label: 'پرداخت',
+    label: 'Payment',
     operationPane: require('../components/OperationPanes/Payment'),
     helpNote: 'Sends an amount in a specific asset to a destination account.',
     docsUrl: 'https://www.stellar.org/developers/learn/concepts/list-of-operations.html#payment',

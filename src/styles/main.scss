@@ -54,7 +54,7 @@
 
 @import '~bootstrap/scss/tables';
 @import '~bootstrap/scss/buttons';
-
+@import '~bootstrap/scss/forms';
 @import 'Fonts';
 
 // Unorganized stuffs below:
@@ -76,4 +76,8 @@
   }
 }
 
-@import "./intoduction";
+
+body {
+  margin: 0;
+  background: linear-gradient(to left,rgba(33,216,255,100),rgba(201,255,244,47))
+}

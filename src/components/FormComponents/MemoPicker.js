@@ -30,11 +30,11 @@ export default function MemoPicker(props) {
       }))}
       className="picker--spaceBottom"
       items={{
-        'MEMO_NONE': 'None',
-        'MEMO_TEXT': 'Text',
-        'MEMO_ID': 'ID',
-        'MEMO_HASH': 'Hash',
-        'MEMO_RETURN': 'Return',
+        'MEMO_NONE': 'هیچکدام',
+        'MEMO_TEXT': 'متن',
+        'MEMO_ID': 'شناسه',
+        'MEMO_HASH': 'چکیده',
+        'MEMO_RETURN': 'بازگشت',
       }}
       />
     {contentPicker}
@@ -61,7 +61,7 @@ function contentValidator(value) {
   case 'MEMO_HASH':
   case 'MEMO_RETURN':
     if (!value.content.match(/^[0-9a-f]{64}$/gi)) {
-      return `${value.type} accepts a 32-byte hash in hexadecimal format (64 characters).`;
+      return `${value.type}یک چکیده ۳۲ بایتی با فرمت هگزادسیمال را میپذیرد.`;
     }
     break;
   }
@@ -75,6 +75,6 @@ function memoPlaceholder(type) {
     return `Unsigned 64-bit integer`;
   case 'MEMO_HASH':
   case 'MEMO_RETURN':
-    return `32-byte hash in hexadecimal format (64 [0-9a-f] characters)`;
+    return `یک چکیده ۳۲ بایتی به فرمت هگزادسیمال شامل ۶۴ کاراکتر از اعداد ۰ تا ۹ و حروف a تاf میباشد.`;
   }
 }

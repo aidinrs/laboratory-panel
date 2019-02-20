@@ -4,7 +4,7 @@ import TransactionPicker from '../FormComponents/TransactionPicker.js';
 
 export default function SingleTransaction(props) {
   return <div>
-    <OptionsTablePair label="Transaction Hash">
+    <OptionsTablePair label="چکیده تراکنش">
       <TransactionPicker
         value={props.values['transaction']}
         onUpdate={(value) => {props.onUpdate('transaction', value)}}

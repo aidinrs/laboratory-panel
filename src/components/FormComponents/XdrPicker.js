@@ -11,7 +11,7 @@ export default function XdrPicker(props) {
       onChange={(event) => {
         onUpdate(event.target.value);
       }}
-      placeholder='Example: AAAAABbxCy3mLg3hiTqX4VUEEp60pFOrJNxYM1JtxXTwXhY2AAAAZAAAAAMAAAAGAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAAJAAAAAAAAAAHwXhY2AAAAQCPAo8QwsZe9FA0sz/deMdhlu6/zrk7SgkBG22ApvtpETBhnGkX4trSFDz8sVlKqvweqGUVgvjUyM0AcHxyXZQw='
+      placeholder='مثال: AAAAABbxCy3mLg3hiTqX4VUEEp60pFOrJNxYM1JtxXTwXhY2AAAAZAAAAAMAAAAGAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAAJAAAAAAAAAAHwXhY2AAAAQCPAo8QwsZe9FA0sz/deMdhlu6/zrk7SgkBG22ApvtpETBhnGkX4trSFDz8sVlKqvweqGUVgvjUyM0AcHxyXZQw='
       className="picker picker--textarea picker--breakContent" />
     <PickerError message={validator(value)} />
   </div>
@@ -19,6 +19,6 @@ export default function XdrPicker(props) {
 
 function validator(value) {
   if (_.isString(value) && value.match(/^[-A-Za-z0-9+\/=]*$/) === null) {
-    return 'Input is not valid base64';
+    return 'ورودی بر پایه ۶۴ بیت نامعتبر است.';
   }
 }

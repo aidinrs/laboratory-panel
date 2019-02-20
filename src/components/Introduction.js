@@ -56,7 +56,7 @@ class Introduction extends React.Component {
       <div className="so-back">
         <div className="so-chunk">
           <div className="Introduction__container">
-            <h2>Stellar Laboratory</h2>
+            <h2>سامانه پیش فروش سکه</h2>
             {/*<p className="Introduction__lead">The Stellar Laboratory is a set of tools that enables people to try out*/}
               {/*and learn about the Stellar network. The laboratory can <a href="#txbuilder">build transactions</a>, <a*/}
                 {/*href="#txsigner">sign them</a>, and <a href="#explorer?resource=transactions&endpoint=create">submit*/}
@@ -66,7 +66,7 @@ class Introduction extends React.Component {
           </div>
           {isLoggedIn && <div>
             <p>{`${user.firstName} ${user.lastName} خوش آمدید.`}</p>
-            <button className="s-button red" onClick={() => {this.logout()}}>خروج</button>
+            <button className="s-button red btn-warning" onClick={() => {this.logout()}}>خروج</button>
           </div>}
           {!isLoggedIn && <div>
             {state.showKeypair && <div>
@@ -98,7 +98,7 @@ class Introduction extends React.Component {
                 <TextPicker onUpdate={(v) => {this.user.password = v}} placeholder='رمز عبور'/>
               </OptionsTablePair>
               <br/>
-              <button className="s-button" onClick={() => {this.register()}}>ارسال</button>
+              <button className="s-button btn-warning" onClick={() => {this.register()}}>ارسال</button>
             </div>}
             {state.mode === 'login' &&
             <div>
@@ -109,7 +109,7 @@ class Introduction extends React.Component {
                 <TextPicker onUpdate={(v) => {this.auth.password = v}} placeholder='رمز عبور'/>
               </OptionsTablePair>
               <br/>
-              <button className="s-button" onClick={() => {this.login()}}>ورود</button>
+              <button className="s-button btn-warning" onClick={() => {this.login()}}>ورود</button>
             </div>}
           </div>}
         </div>

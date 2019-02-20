@@ -21,7 +21,7 @@ export default function For(props) {
       {props.content}
     </OptionsTablePair>
 
-    <OptionsTablePair label="Cursor" optional={true}>
+    <OptionsTablePair label="اشاره گر" optional={true}>
       <TextPicker
         value={props.values['cursor']}
         onUpdate={(value) => {props.onUpdate('cursor', value)}}
@@ -29,7 +29,7 @@ export default function For(props) {
         />
     </OptionsTablePair>
 
-    <OptionsTablePair label="Limit">
+    <OptionsTablePair label="محدودیت">
       <PositiveIntPicker
       value={props.values['limit']}
         onUpdate={(value) => {props.onUpdate('limit', value)}}
@@ -37,7 +37,7 @@ export default function For(props) {
         />
     </OptionsTablePair>
 
-    <OptionsTablePair label="Order">
+    <OptionsTablePair label="سفارش">
       <OrderPicker
         value={props.values['order']}
         onUpdate={(value) => {props.onUpdate('order', value)}}

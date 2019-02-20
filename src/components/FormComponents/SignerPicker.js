@@ -25,7 +25,7 @@ export default function SignerPicker(props) {
   }
 
   let input = null;
-  let weight = null; 
+  let weight = null;
 
   switch (value.type) {
     case "ed25519PublicKey":
@@ -70,6 +70,6 @@ export default function SignerPicker(props) {
 
 function hashValidator(value) {
   if (!value.match(/^[0-9a-f]{64}$/gi)) {
-    return `Accepts a 32-byte hash in hexadecimal format (64 characters).`;
+    return `پذیرش یک چکیده ۳۲ بایتی با فرمت هگزادسیمال(۶۴ کاراکتر) صورت میپذیرد`;
   }
 }

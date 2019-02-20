@@ -41,7 +41,7 @@ class TransactionBuilder extends React.Component {
           <OperationsBuilder />
           <div className="TransactionOperations__add">
             <button className="TransactionOperations__add__button s-button" onClick={() => dispatch(addOperation())}>
-              + Add Operation
+              + اضافه کردن عملیات
             </button>
           </div>
         </div>

@@ -52,9 +52,9 @@ class AccountCreator extends React.Component {
     return <div className="AccountCreator">
       <div className="so-back AccountCreator__section">
         <div className="so-chunk">
-          <h3>1. Keypair generator</h3>
+          <h3>۱.تولید جفت کلید</h3>
 
-          <p>These keypairs can be used on the Stellar network where one is required. For example, it can be used as an account master key, account signer, and/or as a stellar-core node key.</p>
+          <p>این جفت کلید برای امضای تراکنش استفاده خواهد شد. در حفظ آن کوشا باشید.</p>
 
           {/*<button className="s-button" onClick={() => {dispatch(generateNewKeypair())}}>تولید آدرس</button>*/}
           {keypairTable}

@@ -6,7 +6,7 @@ export default function SequencePicker(props) {
 
   return <PositiveIntPicker
     value={value}
-    placeholder='Example: 55834579143'
+    placeholder='مثال: 55834579143'
     onUpdate={(value) => onUpdate(value)}
     />
 }

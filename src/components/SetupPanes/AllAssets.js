@@ -7,14 +7,14 @@ import PubKeyPicker from '../FormComponents/PubKeyPicker.js';
 
 export default function AllAssets(props) {
   return <div>
-    <OptionsTablePair label="Asset Code" optional={true}>
+    <OptionsTablePair label="کد سکه" optional={true}>
       <TextPicker
         value={props.values['asset_code']}
         onUpdate={(value) => {props.onUpdate('asset_code', value)}}
         />
     </OptionsTablePair>
 
-    <OptionsTablePair label="Asset Issuer" optional={true}>
+    <OptionsTablePair label="صادر کننده سکه" optional={true}>
       <PubKeyPicker
         value={props.values['asset_issuer']}
         onUpdate={(value) => {props.onUpdate('asset_issuer', value)}}

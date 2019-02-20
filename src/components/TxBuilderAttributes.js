@@ -28,15 +28,15 @@ export default function TxBuilderAttributes(props) {
           value={attributes['sequence']}
           onUpdate={(value) => {onUpdate('sequence', value)}}
           />
-        <p className="optionsTable__pair__content__note">The transaction sequence number is usually one higher than current account sequence number.</p>
+        <p className="optionsTable__pair__content__note">.شماره توالی تراکنش یکی بیشتر از شماره توالی فعلی حساب میباشد</p>
         <SequenceFetcher />
       </OptionsTablePair>
-      <OptionsTablePair optional={true} label={<span>Base Fee <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#fee" /></span>}>
+      <OptionsTablePair optional={true} label={<span>ارز پایه <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#fee" /></span>}>
         <StroopsPicker
           value={attributes['fee']}
           onUpdate={(value) => {onUpdate('fee', value)}}
           />
-        <p className="optionsTable__pair__content__note">The <a href="https://www.stellar.org/developers/learn/concepts/fees.html">network base fee</a> is currently set to 100 stroops (0.00001 lumens). Transaction fee is equal to base fee times number of operations in this transaction.</p>
+        <p className="optionsTable__pair__content__note"> <a href="https://www.stellar.org/developers/learn/concepts/fees.html">کارمزد پایه شبکه</a> معادل ۱۰۰ استروپ در نظرگرفته شده است.کارمزد تراکنش برابر با کارمزد پایه در تعداد عملیات در یک تراکنش میباشد. </p>
       </OptionsTablePair>
       <OptionsTablePair optional={true} label={<span>از طرف(اختیاری) <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#memo" /></span>}>
         <MemoPicker
@@ -55,7 +55,7 @@ export default function TxBuilderAttributes(props) {
           }}
           onUpdate={(value) => {onUpdate('timebounds', value)}}
           />
-        <p className="optionsTable__pair__content__note">Enter <a href="http://www.epochconverter.com/" target="_blank">unix timestamp</a> values of time bounds when this transaction will be valid.</p>
+        <p className="optionsTable__pair__content__note">وارد کنید <a href="http://www.epochconverter.com/" target="_blank">فرمت زمانی یونیکس</a> .مقادیر محدویدت های زمانی درصورتی که این تراکنش معتبر باشد.</p>
       </OptionsTablePair>
     </div>
   </div>

@@ -38,7 +38,7 @@ export const endpointsMap = {
         'path': {
           template: '/assets{?asset_code,asset_issuer,cursor,order,limit}',
         },
-        'fields': [{name: 'records', fields: ['amount', 'asset_code', 'asset_type', 'asset_issuer'], array: true}],
+        'fields': [{name: 'records', fields: ['amount','asset_type', 'asset_issuer'], array: true}],
         'setupComponent': require('../components/SetupPanes/AllAssets'),
       }
     }
@@ -53,6 +53,7 @@ export const endpointsMap = {
         'path': {
           template: '/effects{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account', 'starting_balance','created_at','type','weight'], array: true}],
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'for_account': {
@@ -62,6 +63,7 @@ export const endpointsMap = {
         'path': {
           template: '/accounts/{account_id}/effects{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','type','weight'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_ledger': {
@@ -71,6 +73,7 @@ export const endpointsMap = {
         'path': {
           template: '/ledgers/{ledger}/effects{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','type','weight'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForLedger'),
       },
       'for_operation': {
@@ -80,6 +83,7 @@ export const endpointsMap = {
         'path': {
           template: '/operations/{operation}/effects{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','type','weight'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForOperation'),
       },
       'for_transaction': {
@@ -89,6 +93,7 @@ export const endpointsMap = {
         'path': {
           template: '/transactions/{transaction}/effects{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','type','weight'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForTransaction'),
       }
     }
@@ -103,6 +108,7 @@ export const endpointsMap = {
         'path': {
           template: '/ledgers{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['sequence','successful_transaction_count','failed_transaction_count', 'operation_count','closed_at'], array: true}],
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
@@ -112,6 +118,7 @@ export const endpointsMap = {
         'path': {
           template: '/ledgers/{ledger}',
         },
+        'fields': ['sequence','successful_transaction_count','failed_transaction_count', 'operation_count','closed_at'],
         'setupComponent': require('../components/SetupPanes/SingleLedger'),
       }
     }
@@ -140,6 +147,7 @@ export const endpointsMap = {
         'path': {
           template: '/operations{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','funder','transaction_successful','type'], array: true}],
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
@@ -149,6 +157,7 @@ export const endpointsMap = {
         'path': {
           template: '/operations/{operation}',
         },
+        'fields': [{name: 'records', fields: ['account','funder','transaction_successful','type'], array: true}],
         'setupComponent': require('../components/SetupPanes/SingleOperation'),
       },
       'for_account': {
@@ -158,6 +167,7 @@ export const endpointsMap = {
         'path': {
           template: '/accounts/{account_id}/operations{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','funder','transaction_successful','type'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_ledger': {
@@ -167,6 +177,7 @@ export const endpointsMap = {
         'path': {
           template: '/ledgers/{ledger}/operations{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','funder','transaction_successful','type'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForLedger'),
       },
       'for_transaction': {
@@ -176,6 +187,7 @@ export const endpointsMap = {
         'path': {
           template: '/transactions/{transaction}/operations{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','funder','transaction_successful','type'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForTransaction'),
       }
     }
@@ -196,6 +208,7 @@ export const endpointsMap = {
           'buying_asset_code': 'buying_asset.code',
           'buying_asset_issuer': 'buying_asset.issuer',
         },
+        'fields': [{name: 'records', fields: ['destination_amount', 'destination_asset_code', 'source_amount','source_asset_code'], array: true}],
         'setupComponent': require('../components/SetupPanes/OrderBookDetails'),
       }
     }
@@ -227,6 +240,7 @@ export const endpointsMap = {
         'path': {
           template: '/payments{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['funder','type'], array: true}],
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'for_account': {
@@ -236,6 +250,7 @@ export const endpointsMap = {
         'path': {
           template: '/accounts/{account_id}/payments{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['sender', 'receiver', 'type'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_ledger': {
@@ -245,6 +260,7 @@ export const endpointsMap = {
         'path': {
           template: '/ledgers/{ledger}/payments{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['funder', 'starting_balance', 'account'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForLedger'),
       },
       'for_transaction': {
@@ -254,6 +270,7 @@ export const endpointsMap = {
         'path': {
           template: '/transactions/{transaction}/payments{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['funder', 'starting_balance', 'account'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForTransaction'),
       }
     }
@@ -277,6 +294,7 @@ export const endpointsMap = {
           'end_time': 'end_time',
           'resolution': 'resolution'
         },
+        'fields': [{name: 'records', fields: ['timestamp', 'trade_count', 'base_volume', 'count_volume'], array: true}],
         'setupComponent': require('../components/SetupPanes/TradeAggregations'),
       },
     }
@@ -307,6 +325,7 @@ export const endpointsMap = {
         'path': {
           template: '/accounts/{account_id}/trades{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['base_account', 'base_amount', 'counter_account', 'counter_amount'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_offer': {
@@ -316,6 +335,7 @@ export const endpointsMap = {
         'path': {
           template: '/offers/{offer_id}/trades{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['base_account', 'base_amount', 'counter_account', 'counter_amount'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForOffer'),
       },
     }
@@ -350,6 +370,7 @@ export const endpointsMap = {
         'path': {
           template: '/transactions',
         },
+        'fields': [{name: 'records', fields: ['hash','ledger','result_xdr'], array: true}],
         'setupComponent': require('../components/SetupPanes/PostTransaction'),
       },
       'for_account': {
@@ -359,6 +380,7 @@ export const endpointsMap = {
         'path': {
           template: '/accounts/{account_id}/transactions{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','hash','fee_paid'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_ledger': {
@@ -368,6 +390,7 @@ export const endpointsMap = {
         'path': {
           template: '/ledgers/{ledger}/transactions{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['account','hash','fee_paid'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForLedger'),
       }
     }

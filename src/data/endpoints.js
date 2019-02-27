@@ -14,10 +14,10 @@ export function getTemplate(...args) {
 
 export const endpointsMap = {
   'accounts': {
-    'label': 'حساب ها',
+    'label': 'حساب‌ها',
     'endpoints': {
       'single': {
-        'label': 'حساب تکی',
+        'label': 'اطلاعات حساب شما ',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/accounts-single.html',
         'method': 'GET',
         'path': {
@@ -29,10 +29,10 @@ export const endpointsMap = {
     }
   },
   'assets': {
-    'label': 'دارایی ها',
+    'label': 'دارایی‌ها',
     'endpoints': {
       'single': {
-        'label': 'همه دارایی ها',
+        'label': 'همه دارایی‌ها ',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/endpoints/assets-all.html',
         'method': 'GET',
         'path': {
@@ -44,10 +44,10 @@ export const endpointsMap = {
     }
   },
   'effects': {
-    'label': 'تاثیرات',
+    'label': 'شرح جزییات عملیات',
     'endpoints': {
       'all': {
-        'label': 'همه تاثیرات',
+        'label': 'شرح همه جزییات عملیات ',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/effects-all.html',
         'method': 'GET',
         'path': {
@@ -56,7 +56,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'for_account': {
-        'label': 'تاثیرات حساب',
+        'label': 'شرح جزییات عملیات حساب',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/effects-for-account.html',
         'method': 'GET',
         'path': {
@@ -65,7 +65,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_ledger': {
-        'label': 'تاثیرات دفترکل',
+        'label': 'شرح جزییات عملیات دفتر کل',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/effects-for-ledger.html',
         'method': 'GET',
         'path': {
@@ -74,7 +74,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/ForLedger'),
       },
       'for_operation': {
-        'label': 'تاثیرات عملیات',
+        'label': 'شرح جزییات عملیات',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/effects-for-operation.html',
         'method': 'GET',
         'path': {
@@ -83,7 +83,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/ForOperation'),
       },
       'for_transaction': {
-        'label': 'تاثیرات تراکنش',
+        'label': 'شرح جزییات عملیات تراکنش',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/effects-for-transaction.html',
         'method': 'GET',
         'path': {
@@ -94,10 +94,10 @@ export const endpointsMap = {
     }
   },
   'ledgers': {
-    'label': 'دفترکل',
+    'label': 'دفتر کل',
     'endpoints': {
       'all': {
-        'label': 'همه دفترکل ها',
+        'label': 'همه دفتر کل ها',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/ledgers-all.html',
         'method': 'GET',
         'path': {
@@ -106,7 +106,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
-        'label': 'دفترکل تکی',
+        'label': 'دفتر کل حساب شما',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/ledgers-single.html',
         'method': 'GET',
         'path': {
@@ -143,7 +143,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
-        'label': 'عملیات تکی',
+        'label': 'عملیات حساب شما',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/operations-single.html',
         'method': 'GET',
         'path': {
@@ -161,7 +161,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_ledger': {
-        'label': 'عملیات دفترکل',
+        'label': 'عملیات دفتر کل',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/operations-for-ledger.html',
         'method': 'GET',
         'path': {
@@ -181,7 +181,7 @@ export const endpointsMap = {
     }
   },
   'order_book': {
-    'label': 'سفارش ها',
+    'label': 'سفارش‌ها',
     'endpoints': {
       'details': {
         'label': 'جزییات',
@@ -213,24 +213,26 @@ export const endpointsMap = {
           'destination_asset_code': 'destination_asset.code',
           'destination_asset_issuer': 'destination_asset.issuer',
         },
+        'fields': [{name: 'records', fields: ['destination_amount', 'destination_asset_code','source_amount','source_asset_code'], array: true}],
         'setupComponent': require('../components/SetupPanes/FindPaymentPaths'),
       }
     }
   },
   'payments': {
-    'label': 'پرداخت ها',
+    'label': 'پرداخت‌ها',
     'endpoints': {
       'all': {
-        'label': 'همه پرداخت ها',
+        'label': 'همه پرداخت‌ها',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/payments-all.html',
         'method': 'GET',
         'path': {
           template: '/payments{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['source_account','type','starting_balance','funder','account'], array: true}],
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'for_account': {
-        'label': 'پرداخت های حساب',
+        'label': 'پرداخت‌های حساب',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/payments-for-account.html',
         'method': 'GET',
         'path': {
@@ -239,7 +241,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_ledger': {
-        'label': 'پرداخت های دفترکل',
+        'label': 'پرداخت‌های دفتر کل',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/payments-for-ledger.html',
         'method': 'GET',
         'path': {
@@ -248,7 +250,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/ForLedger'),
       },
       'for_transaction': {
-        'label': 'پرداخت های تراکنش',
+        'label': 'پرداخت‌های تراکنش',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/payments-for-transaction.html',
         'method': 'GET',
         'path': {
@@ -298,6 +300,8 @@ export const endpointsMap = {
           'counter_asset_issuer': 'counter_asset.issuer',
           'offer_id': 'offer_id'
         },
+        'fields': [{name: 'records', fields: ['ledger_close_time','base_account','base_ammount','base_asset_type','counter_account','counter_ammount','counter_asset_type','counter_asset_code','counter_asset_issue'], array: true}],
+        
         'setupComponent': require('../components/SetupPanes/Trades'),
       },
       'for_account': {
@@ -310,7 +314,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_offer': {
-        'label': 'سفارشهای معامله',
+        'label': 'معاملات یک سفارش ',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/trades-for-offer.html',
         'method': 'GET',
         'path': {
@@ -321,10 +325,10 @@ export const endpointsMap = {
     }
   },
   'transactions': {
-    'label': 'تراکنشها',
+    'label': 'تراکنش‌ها',
     'endpoints': {
       'all': {
-        'label': 'همه تراکنشها',
+        'label': 'همه تراکنش‌ها',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/transactions-all.html',
         'method': 'GET',
         'path': {
@@ -334,7 +338,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
-        'label': 'تراکنشهای تکی',
+        'label': 'تراکنش‌های حساب شما',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/transactions-single.html',
         'method': 'GET',
         'path': {
@@ -343,7 +347,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/SingleTransaction'),
       },
       'create': {
-        'label': 'تراکشنهای سابق',
+        'label': 'تراکشن‌های سابق',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/transactions-create.html',
         'method': 'POST',
         'disableStreaming': true,
@@ -353,7 +357,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/PostTransaction'),
       },
       'for_account': {
-        'label': 'تراکنشهای حساب',
+        'label': 'تراکنش‌های حساب',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/transactions-for-account.html',
         'method': 'GET',
         'path': {
@@ -362,7 +366,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       },
       'for_ledger': {
-        'label': 'تراکنشهای دفترکل',
+        'label': 'تراکنش‌های دفتر کل',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/transactions-for-ledger.html',
         'method': 'GET',
         'path': {

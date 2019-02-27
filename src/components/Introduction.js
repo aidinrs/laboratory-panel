@@ -10,10 +10,18 @@ import { ResultTable } from './SetupPanes/ResultTable'
 import { logoutUser, setUser } from '../actions/user'
 import classNames from 'classnames'
 
+const ISSUING_ACC = NETWORK.accounts.issuing
+const BASE_ACC = NETWORK.accounts.base
+
 class Introduction extends React.Component {
 
   constructor (props) {
     super(props)
+    this.state = {
+      showTable: false,
+      body: [],
+      fields: []
+    }
     this.user = {
       firstName: null,
       lastName: null,
@@ -47,6 +55,79 @@ class Introduction extends React.Component {
     dispatch(showLogin())
     dispatch(logoutUser())
     setTimeout(() => {window.location.reload()}, 1000)
+  }
+
+  allIssuedAssets () {
+    axios.get(`${NETWORK.bridge.base}/assets`, {params: {asset_issuer: ISSUING_ACC, limit: 200}}).then((res) => {
+      if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
+        this.setState({
+          body: res.data._embedded.records,
+          fields: ['amount', 'asset_code', 'asset_issuer', 'asset_type'],
+          showTable: true
+        })
+      }
+    })
+  }
+
+  allBaseTxs () {
+    axios.get(`${NETWORK.bridge.base}/accounts/${BASE_ACC}/transactions`, {params: {limit: 200}}).then((res) => {
+      if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
+        this.setState({
+          body: res.data._embedded.records,
+          fields: ['hash', 'source_account', 'fee_paid', 'created_at'],
+          showTable: true
+        })
+      }
+    })
+  }
+
+  allBaseEffects () {
+    axios.get(`${NETWORK.bridge.base}/accounts/${BASE_ACC}/effects`, {params: {limit: 200}}).then((res) => {
+      if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
+        this.setState({
+          body: res.data._embedded.records,
+          fields: ['account', 'type', 'asset_type', 'asset_code', 'asset_issuer', 'created_at'],
+          showTable: true
+        })
+      }
+    })
+  }
+
+  allBasePayments () {
+    axios.get(`${NETWORK.bridge.base}/accounts/${BASE_ACC}/payments`, {params: {limit: 200}}).then((res) => {
+      if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
+        this.setState({
+          body: res.data._embedded.records,
+          fields: ['transaction_hash', 'type', 'source_account', 'to', 'amount', 'asset_code', 'created_at'],
+          showTable: true
+        })
+      }
+    })
+  }
+
+  allBaseOffers () {
+    axios.get(`${NETWORK.bridge.base}/accounts/${BASE_ACC}/offers`, {params: {limit: 200}}).then((res) => {
+      if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
+        this.setState({
+          body: res.data._embedded.records,
+          fields: ['seller', 'selling', 'buying', 'amount', 'price', 'last_modified'],
+          showTable: true
+        })
+      }
+    })
+  }
+
+  allAccounts () {
+    axios.get(`${NETWORK.api.base}/users/all`, {headers: {Authorization: `Bearer ${this.props.user.access_token}`}})
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          this.setState({
+            body: res.data,
+            fields: ['id', 'firstName', 'lastName', 'friendlyId', 'email', 'accountId'],
+            showTable: true
+          })
+        }
+      })
   }
 
   render () {
@@ -121,7 +202,55 @@ class Introduction extends React.Component {
               <button className="s-button btn-warning" onClick={() => {this.login()}}>ورود</button>
             </div>}
           </div>}
+          <br/>
+          <hr/>
+          <br/>
+          {isLoggedIn && <div>
+            <button className="btn btn-success" onClick={() => {this.allIssuedAssets()}}>همه دارای های منتشر شده
+            </button>
+          </div>}
+          <br/>
+          {isLoggedIn && <div>
+            <button style={{margin: 8}} className="btn btn-primary" onClick={() => {this.allBaseTxs()}}>تراکنش های حساب
+              جاری
+            </button>
+            <button style={{margin: 8}} className="btn btn-primary" onClick={() => {this.allBaseEffects()}}>افکت های
+              حساب جاری
+            </button>
+            <button style={{margin: 8}} className="btn btn-primary" onClick={() => {this.allBasePayments()}}>پرداخت های
+              حساب جاری
+            </button>
+            <button style={{margin: 8}} className="btn btn-primary" onClick={() => {this.allBaseOffers()}}>پیشنهاد های
+              حساب جاری
+            </button>
+          </div>}
+          {isLoggedIn && <div>
+            <button style={{margin: 8}} className="btn btn-warning" onClick={() => {this.allAccounts()}}>همه حساب ها
+            </button>
+          </div>}
         </div>
+        <br/>
+        <br/>
+        {isLoggedIn && this.state.showTable && <div className={'operations-table'}>
+          <table className="table table-striped">
+            <thead>
+            <tr>
+              {this.state.fields.map((k, i) => {
+                return <th key={i}>{k}</th>
+              })}
+            </tr>
+            </thead>
+            <tbody>
+            {this.state.body.map((record, i) => {
+              return <tr key={i}>
+                {this.state.fields.map((key, j) => {
+                  return <td key={j}>{record[key]}</td>
+                })}
+              </tr>
+            })}
+            </tbody>
+          </table>
+        </div>}
       </div>
     </div>
   }

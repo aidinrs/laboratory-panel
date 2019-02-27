@@ -6,7 +6,8 @@ export const loadState = () => {
       return undefined;
     }
     let data = JSON.parse(serializerdState);
-    data.network = defaultNetwork
+    data.network = {current: defaultNetwork}
+    return data
   } catch (err) {
     return undefined;
   }

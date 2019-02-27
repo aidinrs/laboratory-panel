@@ -58,7 +58,7 @@ class Introduction extends React.Component {
   }
 
   allIssuedAssets () {
-    axios.get(`${NETWORK.bridge.base}/assets`, {params: {asset_issuer: ISSUING_ACC, limit: 200}}).then((res) => {
+    axios.get(`${NETWORK.available.main}/assets`, {params: {asset_issuer: ISSUING_ACC, limit: 200}}).then((res) => {
       if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
         this.setState({
           body: res.data._embedded.records,
@@ -70,7 +70,7 @@ class Introduction extends React.Component {
   }
 
   allBaseTxs () {
-    axios.get(`${NETWORK.bridge.base}/accounts/${BASE_ACC}/transactions`, {params: {limit: 200}}).then((res) => {
+    axios.get(`${NETWORK.available.main}/accounts/${BASE_ACC}/transactions`, {params: {limit: 200}}).then((res) => {
       if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
         this.setState({
           body: res.data._embedded.records,
@@ -82,7 +82,7 @@ class Introduction extends React.Component {
   }
 
   allBaseEffects () {
-    axios.get(`${NETWORK.bridge.base}/accounts/${BASE_ACC}/effects`, {params: {limit: 200}}).then((res) => {
+    axios.get(`${NETWORK.available.main}/accounts/${BASE_ACC}/effects`, {params: {limit: 200}}).then((res) => {
       if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
         this.setState({
           body: res.data._embedded.records,
@@ -94,7 +94,7 @@ class Introduction extends React.Component {
   }
 
   allBasePayments () {
-    axios.get(`${NETWORK.bridge.base}/accounts/${BASE_ACC}/payments`, {params: {limit: 200}}).then((res) => {
+    axios.get(`${NETWORK.available.main}/accounts/${BASE_ACC}/payments`, {params: {limit: 200}}).then((res) => {
       if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
         this.setState({
           body: res.data._embedded.records,
@@ -106,7 +106,7 @@ class Introduction extends React.Component {
   }
 
   allBaseOffers () {
-    axios.get(`${NETWORK.bridge.base}/accounts/${BASE_ACC}/offers`, {params: {limit: 200}}).then((res) => {
+    axios.get(`${NETWORK.available.main}/accounts/${BASE_ACC}/offers`, {params: {limit: 200}}).then((res) => {
       if (res.data && res.data._embedded && Array.isArray(res.data._embedded.records)) {
         this.setState({
           body: res.data._embedded.records,

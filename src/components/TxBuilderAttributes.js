@@ -28,7 +28,7 @@ export default function TxBuilderAttributes(props) {
           value={attributes['sequence']}
           onUpdate={(value) => {onUpdate('sequence', value)}}
           />
-        <p className="optionsTable__pair__content__note">.شماره توالی تراکنش یکی بیشتر از شماره توالی فعلی حساب میباشد</p>
+        <p className="optionsTable__pair__content__note">شماره توالی تراکنش یکی بیشتر از شماره توالی فعلی حساب میباشد.</p>
         <SequenceFetcher />
       </OptionsTablePair>
       <OptionsTablePair optional={true} label={<span>ارز پایه <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#fee" /></span>}>
@@ -55,7 +55,7 @@ export default function TxBuilderAttributes(props) {
           }}
           onUpdate={(value) => {onUpdate('timebounds', value)}}
           />
-        <p className="optionsTable__pair__content__note">وارد کنید <a href="http://www.epochconverter.com/" target="_blank">فرمت زمانی یونیکس</a> .مقادیر محدویدت های زمانی درصورتی که این تراکنش معتبر باشد.</p>
+        <p className="optionsTable__pair__content__note">زمانی که این تراکنش معتبر خواهد شد, مقادیر <a href="http://www.epochconverter.com/" target="_blank">فرمت زمانی یونیکس</a> را برای کرانهای زمانی وارد کنید.</p>
       </OptionsTablePair>
     </div>
   </div>

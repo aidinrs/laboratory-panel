@@ -112,7 +112,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
-        'label': 'دفتر کل حساب شما',
+        'label': 'تک حالت از دفتر کل',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/ledgers-single.html',
         'method': 'GET',
         'path': {
@@ -151,7 +151,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
-        'label': 'عملیات حساب شما',
+        'label': 'یک عملیات',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/operations-single.html',
         'method': 'GET',
         'path': {
@@ -357,7 +357,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
-        'label': 'تراکنش‌های حساب شما',
+        'label': 'اطلاعات یک تراکنش‌',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/transactions-single.html',
         'method': 'GET',
         'path': {
@@ -367,7 +367,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/SingleTransaction'),
       },
       'create': {
-        'label': 'تراکشن‌های سابق',
+        'label': 'تراکنش‌های سابق',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/transactions-create.html',
         'method': 'POST',
         'disableStreaming': true,

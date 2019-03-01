@@ -26,7 +26,7 @@ function XdrViewer(props) {
       treeView = <TreeView nodes={extrapolateFromXdr(state.input, state.type)} fetchedSigners={state.fetchedSigners} />
     } catch (e) {
       console.error(e)
-      errorMessage = <p>Unable to decode input as {state.type}</p>;
+      errorMessage = <p> قادر به کدگشایی کردن ورودی به صورت {state.type} نمیباشد.</p>;
     }
   }
 

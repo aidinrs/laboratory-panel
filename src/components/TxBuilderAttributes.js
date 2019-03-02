@@ -21,7 +21,7 @@ export default function TxBuilderAttributes(props) {
           value={attributes['sourceAccount']}
           onUpdate={(value) => {onUpdate('sourceAccount', value)}}
           />
-        <p className="optionsTable__pair__content__note"> اگر هنوز اکانتی ایجاد نکرده اید میتوانید یک اکانت بسازید و از شبکه تست به آن مبلغی را واریز کنید <a href="#account-creator">ساختن اکانت</a>.</p>
+        <p className="optionsTable__pair__content__note"><a href="#account-creator"></a></p>
       </OptionsTablePair>
       <OptionsTablePair label={<span>شماره ترتیب تراکنش <HelpMark href="https://www.stellar.org/developers/learn/concepts/transactions.html#sequence-number" /></span>}>
         <SequencePicker

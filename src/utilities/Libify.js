@@ -79,7 +79,7 @@ Libify.Asset = function(opts) {
     return Sdk.Asset.native();
   }
 
-  assertNotEmpty(opts.code, 'Asset requires asset code');
+  assertNotEmpty(opts.code, 'برای کالا, کد کالا ضروری میباشد.');
   return new Sdk.Asset(opts.code, opts.issuer);
 }
 

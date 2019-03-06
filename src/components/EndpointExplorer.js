@@ -12,7 +12,37 @@ import UriTemplates from 'uri-templates'
 import querystring from 'querystring'
 
 class EndpointExplorer extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      resultView: null
+    }
+  }
+
+  toggleTableResultView () {
+    this.setState({
+      resultView: 'table'
+    })
+  }
+
+  toggleJSONResultView () {
+    this.setState({
+      resultView: 'json'
+    })
+  }
+
+
+
   render () {
+
+    function sendRequest() {
+      this.setState({
+        resultView: null
+      })
+      dispatch(submitRequest(request))
+    }
+
     let {dispatch} = this.props
     let {
       currentResource,
@@ -32,7 +62,7 @@ class EndpointExplorer extends React.Component {
         request={request}
         values={pendingRequest.values}
         endpoint={endpoint}
-        onSubmit={() => dispatch(submitRequest(request))}
+        onSubmit={sendRequest.bind(this)}
         onUpdate={(param, value) => dispatch(updateValue(param, value))}
       />
     }
@@ -49,15 +79,26 @@ class EndpointExplorer extends React.Component {
           </div>
 
           <div className="EndpointExplorer__setup">
-              {endpointSetup}
+            {endpointSetup}
           </div>
-          <div className="EndpointExplorer__result_table">
-            <ResultTable body={results.body && results.body[0] ? (JSON.parse(results.body[0])._embedded ?  JSON.parse(results.body[0])._embedded : JSON.parse(results.body[0])): {}}
-                         keys={(endpoint && endpoint.fields) ? endpoint.fields : []}/>
-          </div>
-          <div className="EndpointExplorer__result">
-            {/*<EndpointResult {...results} />*/}
-          </div>
+          {results.body && results.body[0] && <div>
+            <h3>نتیجه: </h3>
+            <br/>
+            <button className="btn btn-success" onClick={this.toggleTableResultView.bind(this)}>نمایش جدولی</button>
+            &nbsp;
+            <button className="btn btn-success" onClick={this.toggleJSONResultView.bind(this)}>نمایش کامل اطلاعات
+            </button>
+            <br />
+            <br />
+          </div>}
+          {this.state.resultView === 'table' && <div className="EndpointExplorer__result_table">
+            <ResultTable
+              body={results.body && results.body[0] ? (JSON.parse(results.body[0])._embedded ? JSON.parse(results.body[0])._embedded : JSON.parse(results.body[0])) : {}}
+              keys={(endpoint && endpoint.fields) ? endpoint.fields : []}/>
+          </div>}
+          {this.state.resultView === 'json' && <div className="EndpointExplorer__result">
+            <EndpointResult {...results} />
+          </div>}
         </div>
       </div>
     </div>

@@ -9,7 +9,6 @@ export class ResultTable extends React.Component {
     // console.log({data, keys})
 
     return <div>
-      {data && <h3>{label ? label : 'نتیجه'}:</h3>}
       {data && Array.isArray(keys) && keys.map((k) => {
         if (typeof k === 'object' && k.fields && k.array === true) {
           if (data && data[k.name]) {

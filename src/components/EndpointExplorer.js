@@ -32,11 +32,9 @@ class EndpointExplorer extends React.Component {
     })
   }
 
-
-
   render () {
 
-    function sendRequest() {
+    function sendRequest () {
       this.setState({
         resultView: null
       })
@@ -81,15 +79,17 @@ class EndpointExplorer extends React.Component {
           <div className="EndpointExplorer__setup">
             {endpointSetup}
           </div>
-          {results.body && results.body[0] && <div>
+          {results.body && results.isError && <p>نتیجه ای یافت نشد</p>}
+          {results.body && results.available && results.body.length === 0 && <LoadingPane/>}
+          {results.isError !== true && results.body && results.body[0] && <div>
             <h3>نتیجه: </h3>
             <br/>
             <button className="btn btn-success" onClick={this.toggleTableResultView.bind(this)}>نمایش جدولی</button>
             &nbsp;
             <button className="btn btn-success" onClick={this.toggleJSONResultView.bind(this)}>نمایش کامل اطلاعات
             </button>
-            <br />
-            <br />
+            <br/>
+            <br/>
           </div>}
           {this.state.resultView === 'table' && <div className="EndpointExplorer__result_table">
             <ResultTable
@@ -106,6 +106,12 @@ class EndpointExplorer extends React.Component {
 }
 
 export default connect(chooseState)(EndpointExplorer)
+
+function LoadingPane (props) {
+  return <div className="EndpointResult">
+    <div className="EndpointResult__loading">Loading...</div>
+  </div>
+}
 
 function chooseState (state) {
   return {

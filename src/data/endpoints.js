@@ -23,7 +23,7 @@ export const endpointsMap = {
         'path': {
           template: '/accounts/{account_id}',
         },
-        'fields': [{name: 'balances', fields: ['balance', 'asset_type'], array: true}, 'sequence', 'subentry_count'],
+        'fields': [{name: 'balances', fields: ['balance', 'asset_code'], array: true}, 'sequence', 'subentry_count'],
         'setupComponent': require('../components/SetupPanes/SingleAccount'),
       }
     }
@@ -38,7 +38,7 @@ export const endpointsMap = {
         'path': {
           template: '/assets{?asset_code,asset_issuer,cursor,order,limit}',
         },
-        'fields': [{name: 'records', fields: ['amount','asset_type', 'asset_issuer'], array: true}],
+        'fields': [{name: 'records', fields: ['amount','asset_code', 'asset_issuer'], array: true}],
         'setupComponent': require('../components/SetupPanes/AllAssets'),
       }
     }
@@ -112,7 +112,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
-        'label': 'دفتر کل حساب شما',
+        'label': 'تک حالت از دفتر کل',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/ledgers-single.html',
         'method': 'GET',
         'path': {
@@ -133,6 +133,7 @@ export const endpointsMap = {
         'path': {
           template: '/accounts/{account_id}/offers{?cursor,limit,order}',
         },
+        'fields': [{name: 'records', fields: ['seller','id','amount', 'price'], array: true}],
         'setupComponent': require('../components/SetupPanes/ForAccount'),
       }
     }
@@ -151,7 +152,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
-        'label': 'عملیات حساب شما',
+        'label': 'یک عملیات',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/operations-single.html',
         'method': 'GET',
         'path': {
@@ -193,7 +194,7 @@ export const endpointsMap = {
     }
   },
   'order_book': {
-    'label': 'سفارش‌ها',
+    'label': 'دفتر سفارش‌ها',
     'endpoints': {
       'details': {
         'label': 'جزییات',
@@ -206,9 +207,10 @@ export const endpointsMap = {
           'selling_asset_issuer': 'selling_asset.issuer',
           'buying_asset_type': 'buying_asset.type',
           'buying_asset_code': 'buying_asset.code',
-          'buying_asset_issuer': 'buying_asset.issuer',
+          'buying_asset_issuer': 'busource ying_asset.issuer',
         },
-        'fields': [{name: 'records', fields: ['destination_amount', 'destination_asset_code', 'source_amount','source_asset_code'], array: true}],
+        'fields': [{name: 'bids', fields: ['price', 'amount'], array: true},
+          {name: 'asks', fields: ['price', 'amount'], array: true}],
         'setupComponent': require('../components/SetupPanes/OrderBookDetails'),
       }
     }
@@ -357,7 +359,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/All'),
       },
       'single': {
-        'label': 'تراکنش‌های حساب شما',
+        'label': 'اطلاعات یک تراکنش‌',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/transactions-single.html',
         'method': 'GET',
         'path': {
@@ -367,7 +369,7 @@ export const endpointsMap = {
         'setupComponent': require('../components/SetupPanes/SingleTransaction'),
       },
       'create': {
-        'label': 'تراکشن‌های سابق',
+        'label': 'تراکنش‌های سابق',
         'helpUrl': 'https://www.stellar.org/developers/horizon/reference/transactions-create.html',
         'method': 'POST',
         'disableStreaming': true,

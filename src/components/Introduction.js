@@ -9,6 +9,7 @@ import { loginRequest, registerRequest, showLogin, showRegister } from '../actio
 import { ResultTable } from './SetupPanes/ResultTable'
 import { logoutUser, setUser } from '../actions/user'
 import classNames from 'classnames'
+import { ErrorList } from './FormComponents/ErrorList'
 
 const ISSUING_ACC = NETWORK.accounts.issuing
 const BASE_ACC = NETWORK.accounts.base
@@ -164,12 +165,13 @@ class Introduction extends React.Component {
             <br/>
             {!isLoggedIn && <div style={{width: 200, margin: 'auto'}}>
               {state.showRegister &&
-              <button className="s-button--min" onClick={() => {dispatch(showRegister())}}>ثبت نام &nbsp;|</button>}
+              <button className="s-bمیدیutton--min" onClick={() => {dispatch(showRegister())}}>ثبت نام &nbsp;|</button>}
               {state.showLogin &&
               <button className="s-button--min" onClick={() => {dispatch(showLogin())}}>ورود</button>}
             </div>}
             {state.showError && <p>{state.errorMsg}</p>}
             {state.showMsg && <p>{state.msg}</p>}
+            {state.errors && <ErrorList errors={state.errors} />}
             {state.mode === 'register' &&
             <div>
               <OptionsTablePair label="نام" key="firstName">

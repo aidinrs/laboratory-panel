@@ -52,5 +52,6 @@ export class ResultTable extends React.Component {
 
 const translations = {
   accountId: 'حساب',
-  hash: 'چکیده'
+  hash: 'چکیده',
+  created_at: 'تاریخ ساخت',
 }

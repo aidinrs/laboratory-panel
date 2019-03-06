@@ -23,6 +23,14 @@ function getResponseError (e) {
     } else if (e.response.data.code === 'invalid_parameter') {
       if (e.response.data.data.name === 'source') {
         return ['کلید خصوصی اشتباه است.']
+      } else if (e.response.data.data.name === 'destination') {
+        return ['آدرس مقصد اشتباه است.']
+      }else if (e.response.data.data.name === 'amount') {
+        return ['مقدار اشتباه است.']
+      }else if (e.response.data.data.name === 'asset_code') {
+        return ['کد دارایی اشتباه است.']
+      }else if (e.response.data.data.name === 'asset_issuer') {
+        return ['آدرس منتشر کننده دارایی اشتباه است.']
       }
       return [`${e.response.data.data.name} اشتباه است. `]
     }
